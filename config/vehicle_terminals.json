@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "1.0",
+  "sourceNetworkSha256": "90b888ff3ef1ff9052ee386f53602628fc38828eef311825c17ea4902a2b2605",
+  "coordinateSystem": "TESSNG_INTERNAL_METRIC_Y_DOWN",
+  "selectionPolicy": {
+    "expectedTerminalCount": 22,
+    "destinationMode": "ALL_OTHER_TERMINALS",
+    "allowSameTerminalDestination": false,
+    "maxAnchorMatchDistanceM": 80.0,
+    "maxPairSeparationM": 40.0,
+    "note": "每个物理端点分别绑定驶入方向的发车Link和驶出方向的消失Link"
+  },
+  "terminals": [
+    {
+      "terminalId": "B01",
+      "displayName": "外围截断口01",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 3980,
+      "exitLinkId": 6367,
+      "anchorXY": [-2060.155, -1655.614]
+    },
+    {
+      "terminalId": "B02",
+      "displayName": "外围截断口02",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 4043,
+      "exitLinkId": 6369,
+      "anchorXY": [-1522.419, -1778.307]
+    },
+    {
+      "terminalId": "B03",
+      "displayName": "外围截断口03",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5874,
+      "exitLinkId": 5669,
+      "anchorXY": [-3007.980, -1145.280]
+    },
+    {
+      "terminalId": "B04",
+      "displayName": "外围截断口04",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 4974,
+      "exitLinkId": 4021,
+      "anchorXY": [-2669.580, -613.225]
+    },
+    {
+      "terminalId": "B05",
+      "displayName": "外围截断口05",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 3955,
+      "exitLinkId": 4880,
+      "anchorXY": [-2671.650, -414.495]
+    },
+    {
+      "terminalId": "B06",
+      "displayName": "外围截断口06",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5567,
+      "exitLinkId": 5566,
+      "anchorXY": [-3115.408, 136.656]
+    },
+    {
+      "terminalId": "B07",
+      "displayName": "外围截断口07",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 4724,
+      "exitLinkId": 5837,
+      "anchorXY": [-2677.729, 709.017]
+    },
+    {
+      "terminalId": "B08",
+      "displayName": "外围截断口08",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5564,
+      "exitLinkId": 5563,
+      "anchorXY": [-2701.098, 1108.758]
+    },
+    {
+      "terminalId": "B09",
+      "displayName": "外围截断口09",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5670,
+      "exitLinkId": 4428,
+      "anchorXY": [-2660.330, 2036.915]
+    },
+    {
+      "terminalId": "B10",
+      "displayName": "外围截断口10",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 4565,
+      "exitLinkId": 4991,
+      "anchorXY": [-865.164, 1974.763]
+    },
+    {
+      "terminalId": "B11",
+      "displayName": "外围截断口11",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 4556,
+      "exitLinkId": 6042,
+      "anchorXY": [1147.739, 1751.802]
+    },
+    {
+      "terminalId": "B12",
+      "displayName": "外围截断口12",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5925,
+      "exitLinkId": 5924,
+      "anchorXY": [3058.359, 1434.912]
+    },
+    {
+      "terminalId": "B13",
+      "displayName": "外围截断口13",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5767,
+      "exitLinkId": 5285,
+      "anchorXY": [2957.990, 906.940]
+    },
+    {
+      "terminalId": "B14",
+      "displayName": "外围截断口14",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 4787,
+      "exitLinkId": 4781,
+      "anchorXY": [2837.547, 446.631]
+    },
+    {
+      "terminalId": "B15",
+      "displayName": "外围截断口15",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5658,
+      "exitLinkId": 5432,
+      "anchorXY": [2975.035, -447.135]
+    },
+    {
+      "terminalId": "B16",
+      "displayName": "外围截断口16",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5873,
+      "exitLinkId": 5142,
+      "anchorXY": [3093.130, -1126.345]
+    },
+    {
+      "terminalId": "B17",
+      "displayName": "外围截断口17",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 5666,
+      "exitLinkId": 5880,
+      "anchorXY": [2099.349, -1964.051]
+    },
+    {
+      "terminalId": "B18",
+      "displayName": "外围截断口18",
+      "group": "OUTER_BOUNDARY",
+      "entryLinkId": 4042,
+      "exitLinkId": 5007,
+      "anchorXY": [1402.371, -2024.412]
+    },
+    {
+      "terminalId": "R01",
+      "displayName": "居民区端点01",
+      "group": "RESIDENTIAL_AREA",
+      "entryLinkId": 5708,
+      "exitLinkId": 4439,
+      "anchorXY": [-1215.664, 1353.122]
+    },
+    {
+      "terminalId": "R02",
+      "displayName": "居民区端点02",
+      "group": "RESIDENTIAL_AREA",
+      "entryLinkId": 4479,
+      "exitLinkId": 5756,
+      "anchorXY": [-1515.855, 1553.935]
+    },
+    {
+      "terminalId": "R03",
+      "displayName": "居民区端点03（双向分离）",
+      "group": "RESIDENTIAL_AREA",
+      "entryLinkId": 5725,
+      "exitLinkId": 5726,
+      "anchorXY": [-1403.510, 1662.390],
+      "maxPairSeparationM": 40.0,
+      "note": "驶入与驶出方向的端点横向相距约25.68米，禁止按同一中心点合并"
+    },
+    {
+      "terminalId": "R04",
+      "displayName": "居民区端点04",
+      "group": "RESIDENTIAL_AREA",
+      "entryLinkId": 5755,
+      "exitLinkId": 4477,
+      "anchorXY": [-1219.750, 1661.575]
+    }
+  ],
+  "excludedAutomaticTerminals": [
+    {
+      "entryLinkId": 5381,
+      "exitLinkId": 5380,
+      "reason": "自动拓扑端点，但不在用户标注的18个外围截断口和4个居民区端点范围内"
+    }
+  ]
+}

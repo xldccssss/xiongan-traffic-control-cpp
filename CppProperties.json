@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "inheritEnvironments": [
+        "msvc_x64"
+      ],
+      "name": "x64-Release",
+      "includePath": [
+        "${env.INCLUDE}",
+        "${workspaceRoot}\\include",
+        "${workspaceRoot}\\src",
+        "F:\\Qt\\5.15.2\\msvc2019_64\\include",
+        "${workspaceRoot}\\**"
+      ],
+      "defines": [
+        "WIN32",
+        "_WIN64",
+        "NDEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "intelliSenseMode": "windows-msvc-x64",
+      "cppStandard": "c++17"
+    }
+  ]
+}

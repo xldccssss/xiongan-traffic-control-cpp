@@ -1,0 +1,229 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "雄安窄路密网车-路-云协同接口",
+    "version": "1.0.0",
+    "description": "赛道A接口抽象设计。用于Postman或Apifox导入、Mock和联调；当前本地仿真通过进程内适配器实现同一数据契约。"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8080",
+      "description": "可选本机Mock服务；默认本地仿真不要求启动HTTP网关"
+    }
+  ],
+  "paths": {
+    "/api/v1/intersections/{intersectionId}/state": {
+      "post": {
+        "summary": "RSU向云端上报单交叉口聚合状态",
+        "parameters": [
+          {
+            "name": "intersectionId",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string", "example": "J039-L"}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/IntersectionState"},
+              "example": {
+                "messageId": "state-J039-L-120000",
+                "simulationTimeSec": 120.0,
+                "dataTimestampMs": 120000,
+                "signalState": {"stageId": "J039_P2", "color": "GREEN"},
+                "approaches": [
+                  {"direction": "E", "vehicleCount": 18, "queueVehicles": 7, "meanSpeedKph": 24.8, "occupancy": 0.42}
+                ],
+                "vehicles": [
+                  {"vehicleId": "CAV-1024", "positionM": 68.5, "speedMps": 8.2, "destinationTerminalId": "B12"}
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "状态已接收",
+            "content": {
+              "application/json": {
+                "example": {"accepted": true, "messageId": "state-J039-L-120000"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/intersections/{intersectionId}/decision": {
+      "post": {
+        "summary": "当前租约持有节点下发信号、路径与车速协同决策",
+        "parameters": [
+          {
+            "name": "intersectionId",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string", "example": "J039-L"}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/ControlDecision"},
+              "example": {
+                "commandId": "cmd-J039-L-120000",
+                "generatedAtMs": 120000,
+                "validUntilMs": 125000,
+                "authorityLease": {
+                  "leaderNode": "EDGE_RSU_NODE",
+                  "leaseId": 1058,
+                  "validUntilSimulationSec": 135.0,
+                  "uniqueWriterEnforced": true
+                },
+                "signalPlan": {"stageId": "J039_P2", "greenSec": 18, "yellowSec": 3, "allRedSec": 2},
+                "routeCosts": [{"fromLinkId": 101, "toLinkId": 205, "costSec": 14.2}],
+                "speedAdvice": [{"vehicleId": "CAV-1024", "targetSpeedKph": 36.0}]
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "指令进入RSU安全校验和执行队列",
+            "content": {
+              "application/json": {
+                "example": {"accepted": true, "commandId": "cmd-J039-L-120000"}
+              }
+            }
+          },
+          "409": {
+            "description": "指令违反安全状态机或已经过期"
+          }
+        }
+      }
+    },
+    "/api/v1/intersections/{intersectionId}/ack": {
+      "post": {
+        "summary": "RSU向云端回传执行结果",
+        "parameters": [
+          {
+            "name": "intersectionId",
+            "in": "path",
+            "required": true,
+            "schema": {"type": "string", "example": "J039-L"}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {"$ref": "#/components/schemas/CommandAck"},
+              "example": {
+                "commandId": "cmd-J039-L-120000",
+                "accepted": true,
+                "appliedAtMs": 120200,
+                "actualStageId": "J039_P2",
+                "rejectReason": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "回执已记录",
+            "content": {
+              "application/json": {"example": {"received": true}}
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IntersectionState": {
+        "type": "object",
+        "required": ["messageId", "simulationTimeSec", "dataTimestampMs", "signalState", "approaches"],
+        "properties": {
+          "messageId": {"type": "string"},
+          "simulationTimeSec": {"type": "number"},
+          "dataTimestampMs": {"type": "integer", "format": "int64"},
+          "signalState": {
+            "type": "object",
+            "properties": {
+              "stageId": {"type": "string"},
+              "color": {"type": "string", "enum": ["GREEN", "YELLOW", "ALL_RED", "RED"]}
+            }
+          },
+          "approaches": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "direction": {"type": "string"},
+                "vehicleCount": {"type": "integer"},
+                "queueVehicles": {"type": "number"},
+                "meanSpeedKph": {"type": "number"},
+                "occupancy": {"type": "number", "minimum": 0, "maximum": 1}
+              }
+            }
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "vehicleId": {"type": "string"},
+                "positionM": {"type": "number"},
+                "speedMps": {"type": "number"},
+                "destinationTerminalId": {"type": "string"}
+              }
+            }
+          }
+        }
+      },
+      "ControlDecision": {
+        "type": "object",
+        "required": ["commandId", "generatedAtMs", "validUntilMs", "authorityLease", "signalPlan"],
+        "properties": {
+          "commandId": {"type": "string"},
+          "generatedAtMs": {"type": "integer", "format": "int64"},
+          "validUntilMs": {"type": "integer", "format": "int64"},
+          "authorityLease": {
+            "type": "object",
+            "required": ["leaderNode", "leaseId", "validUntilSimulationSec", "uniqueWriterEnforced"],
+            "properties": {
+              "leaderNode": {"type": "string", "enum": ["TERMINAL_NODE", "EDGE_RSU_NODE"]},
+              "leaseId": {"type": "integer", "minimum": 1},
+              "validUntilSimulationSec": {"type": "number"},
+              "uniqueWriterEnforced": {"type": "boolean", "enum": [true]}
+            }
+          },
+          "signalPlan": {
+            "type": "object",
+            "properties": {
+              "stageId": {"type": "string"},
+              "greenSec": {"type": "number"},
+              "yellowSec": {"type": "number"},
+              "allRedSec": {"type": "number"}
+            }
+          },
+          "routeCosts": {"type": "array", "items": {"type": "object"}},
+          "speedAdvice": {"type": "array", "items": {"type": "object"}}
+        }
+      },
+      "CommandAck": {
+        "type": "object",
+        "required": ["commandId", "accepted", "appliedAtMs"],
+        "properties": {
+          "commandId": {"type": "string"},
+          "accepted": {"type": "boolean"},
+          "appliedAtMs": {"type": "integer", "format": "int64"},
+          "actualStageId": {"type": "string"},
+          "rejectReason": {"type": "string"}
+        }
+      }
+    }
+  }
+}

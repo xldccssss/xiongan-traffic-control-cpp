@@ -1,0 +1,822 @@
+{
+  "projectName": "雄安窄密路网车路云协同控制",
+  "tessngVersion": "4.1.3",
+  "network": {
+    "tessngExecutable": "F:/TESSNG_4.1.3/TESSNG.exe",
+    "baselineRelativePath": "雄安区路网.tess",
+    "workingCopyRelativePath": "WorkSpace/Data/雄安区路网_二次开发工作副本.tess",
+    "nativeBuildRelativePath": "WorkSpace/Data/雄安区路网_本地仿真构建版.tess",
+    "runtimeCopyRelativePath": "WorkSpace/Data/雄安区路网_本地仿真运行副本.tess",
+    "nativeModelSchemaVersion": "2026-09-06-physical-lane-atomic-signal-v3",
+    "reuseCompletedBuildWhenBaselineUnchanged": false,
+    "startupBuildPolicy": "ALWAYS_REBUILD_FROM_MASTER",
+    "autoSaveWorkingCopyAfterBuild": false,
+    "autoRefreshWorkingCopyWhenBaselineChanges": true,
+    "gatewayStartupTimeoutSec": 90,
+    "openNetworkTimeoutSec": 180,
+    "topologyOverrides": {
+      "reason": "同步2026-09-08在TESS中手工合并后的J253-J254实际拓扑；旧的4430/4431/5672/5673短Link已删除",
+      "removedLinkIds": [4430, 4431, 5672, 5673],
+      "addedEdges": [
+        {
+          "fromLinkId": 4432,
+          "toLinkId": 4429,
+          "connectorLengthM": 57.873
+        },
+        {
+          "fromLinkId": 4432,
+          "toLinkId": 5726,
+          "connectorLengthM": 38.927
+        },
+        {
+          "fromLinkId": 5671,
+          "toLinkId": 5674,
+          "connectorLengthM": 57.816
+        }
+      ],
+      "localDecisionOverrides": [
+        {
+          "decisionLinkId": 4432,
+          "intersectionIncomingLinkId": 4432,
+          "corridorLinkIds": [4432],
+          "routes": [
+            {"toLinkId": 4429, "routingChoiceLinkId": 4429},
+            {"toLinkId": 5726, "routingChoiceLinkId": 5726}
+          ]
+        },
+        {
+          "decisionLinkId": 5671,
+          "intersectionIncomingLinkId": 5671,
+          "corridorLinkIds": [5671],
+          "routes": [
+            {"toLinkId": 5674, "routingChoiceLinkId": 5674}
+          ]
+        },
+        {
+          "decisionLinkId": 5725,
+          "intersectionIncomingLinkId": 5725,
+          "corridorLinkIds": [5725],
+          "routes": [
+            {"toLinkId": 4429, "routingChoiceLinkId": 4429}
+          ]
+        }
+      ],
+      "blockedSpawnLanes": [
+        {
+          "linkId": 5725,
+          "laneId": 6203,
+          "reason": "J253-J254删除左转后该车道没有任何下游连接器"
+        }
+      ]
+    },
+    "disabledMovements": [
+      {
+        "intersectionId": "J251",
+        "approachDirection": "W",
+        "turnType": "left",
+        "connectorId": 9709,
+        "fromLinkId": 5675,
+        "fromLaneId": 6075,
+        "toLinkId": 4452,
+        "toLaneId": 4759,
+        "reason": "删除J251西侧进口左转；保留5675到6371的西向东直行"
+      }
+    ]
+  },
+  "gradeSeparation": {
+    "enabled": true,
+    "scopeRoadNames": [
+      "兴贤路",
+      "金湖街"
+    ],
+    "surfaceElevationM": 0.0,
+    "undergroundElevationM": -6.0,
+    "portalRampLengthM": 120.0,
+    "undergroundLinkIds": [
+      4719,
+      4827,
+      4843,
+      4877,
+      5393,
+      5818,
+      5820,
+      6432
+    ],
+    "portalConnectorAreaIds": [
+      3282,
+      3287,
+      3548,
+      3651,
+      3652,
+      3995,
+      3997
+    ],
+    "surfaceConnectorAreaIds": [
+      3853
+    ],
+    "undergroundConnectorAreaIds": [
+      4417
+    ],
+    "undergroundConnectorIds": [
+      11325,
+      11326,
+      11327,
+      11328,
+      11329,
+      11330,
+      11331,
+      11332,
+      11333,
+      11334,
+      11335,
+      11336
+    ],
+    "controlIsolation": "SURFACE_AND_UNDERGROUND_INDEPENDENT",
+    "note": "仅对兴贤路、金湖街内侧双向长Link设置地下层；CA3853保留地面T形交叉口，CA4417为独立地下四向交叉口。7个出入口连接区只允许同一道路地上/地下转换，不参与信号控制"
+  },
+  "routing": {
+    "buildLocalDecisions": true,
+    "buildGlobalCavRoutes": true,
+    "terminalManifest": "config/vehicle_terminals.json",
+    "destinationMode": "ALL_OTHER_TERMINALS",
+    "requireAllOtherTerminalsReachable": true,
+    "linearAxisToleranceDeg": 15.0,
+    "branchAngleThresholdDeg": 15.0,
+    "decisionDistanceFromStartM": 0.5,
+    "decisionLeadDistanceBeforeWideningM": 80.0,
+    "upstreamWideningTraceMaxHops": 4,
+    "upstreamWideningTraceMaxDistanceM": 180.0,
+    "upstreamWideningStraightToleranceDeg": 15.0,
+    "forceDecisionLinkIds": [],
+    "excludeDecisionLinkIds": [],
+    "destinationsPerEntry": 0,
+    "minimumLinksPerRoute": 2,
+    "turnWeights": {
+      "straight": 0.62,
+      "left": 0.18,
+      "right": 0.2,
+      "uturn": 0.0
+    }
+  },
+  "randomSeeds": {
+    "vehicleGeneration": 20260822,
+    "destinationChoice": 20260823,
+    "note": "两种算法同一轮必须使用相同的两项种子；车辆产生种子同时传入TESSNG并控制预载位置/车型，目的地选择种子独立控制车辆固定终点"
+  },
+  "demand": {
+    "enabled": true,
+    "vehicleCompositionId": 1,
+    "durationSec": 3600,
+    "vehiclesPerEntryPerHour": 1000,
+    "outerBoundaryVehiclesPerEntryPerHour": 1000,
+    "residentialVehiclesPerEntryPerHour": 100,
+    "dataStatus": "演示初值，须用实际OD/断面流量替换"
+  },
+  "simulationPanel": {
+    "enabled": true,
+    "autoStartCompletedBuild": false,
+    "dockArea": "RIGHT",
+    "minimumDockWidth": 250,
+    "preferredDockWidth": 285,
+    "eventViewMinimumHeight": 220,
+    "refreshIntervalMs": 500,
+    "maximumSpeedMultiple": 50,
+    "maximumVehiclesPerEntryPerHour": 5000,
+    "minimumDurationSec": 60,
+    "maximumDurationSec": 86400,
+    "durationStepSec": 60,
+    "comparisonRounds": 3,
+    "unlimitedDemandHorizonSec": 3600,
+    "note": "界面调整只影响当前仿真，不写回母版或配置文件"
+  },
+  "dataVisualizationPanel": {
+    "enabled": true,
+    "dockArea": "BOTTOM",
+    "refreshIntervalMs": 1000,
+    "minimumDockHeight": 260,
+    "preferredDockHeight": 310,
+    "historyPoints": 180,
+    "trajectoryRetentionPoints": 30,
+    "maximumTrackedVehicles": 2000,
+    "maximumDisplayedVehicles": 400,
+    "semiTransparentBackground": true,
+    "intersectionInteraction": {
+      "enabled": true,
+      "markerRadiusPx": 7,
+      "zoomOnClick": true,
+      "focusRadiusM": 110,
+      "detailRefreshIntervalMs": 1000,
+      "detailWindowWidth": 720,
+      "detailWindowHeight": 780,
+      "detailWindowPlacement": "LEFT_FLOATING",
+      "detailWindowLeftMarginPx": 16,
+      "detailWindowTopOffsetPx": 72,
+      "showVehicleRoadCloudDataFlow": true,
+      "apiContractFile": "config/vehicle_road_cloud_openapi.json",
+      "markerCorrections": {
+        "J002": [
+          {
+            "markerId": "J002-U",
+            "markerName": "J002上侧交叉口",
+            "centerXY": [425.949, -1510.184],
+            "dataScopeNote": "原ConnectorArea 1846纵跨两个路口，上下标记共享J002采集数据；本标记按北侧Connector轨迹中心定位"
+          },
+          {
+            "markerId": "J002-D",
+            "markerName": "J002下侧交叉口",
+            "centerXY": [439.778, -1728.063],
+            "dataScopeNote": "原ConnectorArea 1846纵跨两个路口，上下标记共享J002采集数据；本标记按南侧Connector轨迹中心定位"
+          }
+        ],
+        "J009": [
+          {
+            "markerId": "J004-R",
+            "markerName": "J004右侧T形交叉口",
+            "centerXY": [909.125, -1423.237],
+            "dataScopeNote": "原ConnectorArea 2330同时覆盖此口与J009，本标记显示其共享采集数据"
+          },
+          {
+            "markerId": "J009",
+            "markerName": "J009地面层十字交叉口",
+            "centerXY": [914.987, -1290.658],
+            "dataScopeNote": "已从ConnectorArea 2330的错误平均中心移回北侧实际路口"
+          }
+        ],
+        "J039": [
+          {
+            "markerId": "J039-L",
+            "markerName": "J039左侧交叉口",
+            "centerXY": [963.417, -904.119],
+            "dataScopeNote": "原ConnectorArea 2033横跨两个路口，左右标记共享J039采集数据"
+          },
+          {
+            "markerId": "J039-R",
+            "markerName": "J039右侧交叉口",
+            "centerXY": [1168.889, -902.699],
+            "dataScopeNote": "原ConnectorArea 2033横跨两个路口，左右标记共享J039采集数据"
+          }
+        ],
+        "J244": [
+          {
+            "markerId": "J244-U",
+            "markerName": "J244上侧交叉口",
+            "centerXY": [1648.873, 1533.499],
+            "dataScopeNote": "原ConnectorArea 2048纵跨两个路口，上下标记共享J244采集数据"
+          },
+          {
+            "markerId": "J244-D",
+            "markerName": "J244下侧交叉口",
+            "centerXY": [1646.967, 1651.861],
+            "dataScopeNote": "原ConnectorArea 2048纵跨两个路口，上下标记共享J244采集数据"
+          }
+        ],
+        "J254": [
+          {
+            "markerId": "J253-J254",
+            "markerName": "J253-J254 合并交叉口",
+            "centerXY": [-1402.949, 1734.010],
+            "dataScopeNote": "J253与J254相距约26.4m，按一个交叉口建模；仅保留一套外边界信号控制与一个交互点"
+          }
+        ]
+      },
+      "note": "为254个逻辑交叉口添加258个仅运行期存在的Qt物理路口标记；J253并入J254并只显示一个合并交互点，J002、J009、J039、J244按实际双节点拆分，不写入tess母版"
+    },
+    "note": "独立于右侧控制栏的只读半透明面板；动态展示真实车辆轨迹、排队、速度、能耗、信号状态及交互事件"
+  },
+  "simulationPerformance": {
+    "visibleEfficiency": {
+      "enabled": true,
+      "threadCount": 8,
+      "reserveLogicalCores": 0,
+      "minimumThreadCount": 1,
+      "maximumThreadCount": 8,
+      "highFidelityMaxTargetMultiple": 2,
+      "balancedMaxTargetMultiple": 5,
+      "highFidelityAccuracyHz": 10,
+      "balancedAccuracyHz": 10,
+      "throughputAccuracyHz": 10,
+      "highFidelitySamplePeriodSec": 1.0,
+      "efficientSamplePeriodSec": 1.0,
+      "signalReadbackPeriodSec": 5.0,
+      "nativeTraceRecordingEnabled": false,
+      "useWallClockSimulationTime": false,
+      "note": "大路网实时可视化效率档：TESSNG 4.1.3的simuAccuracy表示每仿真秒计算次数，三档统一采用10次/s（约100ms/步）；使用本机全部逻辑处理器且关闭重复的TESSNG原生轨迹记录，项目自有轨迹/KPI/界面采集保持启用。固定步长模式保证不同算法结果可复现；两种算法正式对比必须使用相同目标倍速和同一效率档"
+    },
+    "batchCommands": {
+      "enabled": true,
+      "requiredPackage": "tessng==4.1.3.2",
+      "controlEntry": "PyCustomerSimulator.afterOneStep + Step",
+      "failClosedWhenUnavailable": true,
+      "sparseVehicleCommands": true,
+      "cacheSignalLampBindings": true,
+      "vehicleCandidateRefreshSec": 1.0,
+      "vehicleCandidateLookaheadM": 220.0,
+      "highFrequencyLookaheadM": 25.0,
+      "pythonVehicleCallbackIntervalSteps": 1000000,
+      "note": "大路网默认使用4.1.3.2批次指令：C++从全车快照筛选停止线、决策区、RSU、换道区和锁道候选，Python每1仿真秒只刷新候选策略；批次间由C++按100ms执行红灯停车、绿灯释放、期望速度和换道冻结。已由C++接管的7类逐车Python虚回调被近似停用，避免2000+车辆每步产生数万次无效跨语言调用；初始化、固定OD、动态路径决策和TESSNG原生跟驰仍正常执行。C++复用未变化的灯色帧但仍逐批写入全部实体灯头；关闭enabled可回退传统回调模式"
+    },
+    "traditionalCallbacks": {
+      "desiredSpeedEverySteps": 2,
+      "hardStopEverySteps": 1,
+      "mandatoryLaneEverySteps": 5,
+      "freeLaneEverySteps": 5,
+      "note": "传统灯色回调兼容模式的逐车执行频率：按10次/s仿真精度分别约为200ms、100ms、500ms和500ms；只减少重复Python调用，不改变OD、路径、信号相位或控制公式"
+    },
+    "nativeAccelerator": {
+      "enabled": true,
+      "mode": "NATIVE",
+      "required": true,
+      "libraryRelativePath": "native_accelerator/bin/aa_cemp_native.dll",
+      "planValiditySec": 15.0,
+      "timeoutPolicy": "HOLD_SAFE",
+      "transport": "IN_PROCESS_DOUBLE_BUFFER",
+      "failOpen": false,
+      "signalWriteOwner": "CPP_SINGLE_WRITER",
+      "note": "正式C++高频执行层：Python保留动态主从、改进最大压力公式、固定OD业务规则和实验组织；C++负责候选车辆筛选、路口阶段与RSU聚合、100ms车辆安全动作及22目的端点最短路径森林。完整控制帧经同进程内存双缓冲传递，携带planVersion、simulationTimeSec和有效期；C++是唯一灯色写入者，计划超时保持当前安全绿灯，黄灯或全红超时则转全红。无逐批文件读写、无HTTP、无影子模式"
+    },
+    "closedLoopSpeed": {
+      "enabled": true,
+      "minimumCommandMultiple": 1,
+      "maximumCommandMultiple": 50,
+      "adjustmentIntervalWallSec": 2.0,
+      "minimumObservationWallSec": 1.5,
+      "toleranceRatio": 0.08,
+      "proportionalGain": 0.7,
+      "integralGain": 0.08,
+      "maximumCommandStep": 12,
+      "measurementEmaAlpha": 0.35,
+      "capacityEmaAlpha": 0.25,
+      "capacityLimitConfirmations": 3,
+      "note": "面板倍速表示实际墙钟目标；显示值与闭环反馈均采用仿真时间增量/单调墙钟时间增量，不采用高倍速下可能产生瞬时尖峰的acceMultiplesReally。TESSNG 4.1.3原生调度命令保持在已验证的1-50稳定区间并渐进调整；达到上限后明确显示性能上限，避免极端调度值引发内核非法内存访问"
+    }
+  },
+  "runtimeVehicleGeneration": {
+    "mode": "MANAGED_CAV",
+    "vehicleTypeSource": "initialTraffic.vehicleTypes",
+    "vehicleTypeCycleSize": 100,
+    "warmStartOneVehiclePerEntry": true,
+    "spawnDistanceM": 0.0,
+    "initialSpeedMps": 5.0,
+    "maximumCreatesPerStep": 44,
+    "retryIntervalSec": 0.5,
+    "minimumSuccessfulSpawnHeadwaySec": 1.5,
+    "nativeNoVehicleFallbackEnabled": true,
+    "nativeNoVehicleFallbackSec": 5.0,
+    "note": "批次模式下由二次开发按母版22个物理发车点和面板流率调用TESSNG动态车辆接口；持续发车与初始预载共用小客车/中客车车型比例，每辆车创建成功后立即绑定固定终点，不依赖批次模式不支持的initVehicle回调。拥堵期间未发出的需求保留为入口信用，但每个端点按最小成功发车间隔逐辆释放，禁止在单个100ms批次内突发灌入积压车辆。"
+  },
+  "initialTraffic": {
+    "enabled": true,
+    "targetDensityVehPerLaneKm": 5.0,
+    "targetVehicleCount": 2000,
+    "allocationMode": "RANDOM_ELIGIBLE_LINK_LANE_SLOTS",
+    "preloadWindowSec": 15,
+    "maximumCreatesPerStep": 44,
+    "maximumAttemptsPerVehicle": 3,
+    "minimumLinkLengthM": 60.0,
+    "startClearanceM": 20.0,
+    "endClearanceM": 20.0,
+    "decisionEndClearanceM": 80.0,
+    "minimumSpacingM": 35.0,
+    "initialSpeedMps": 8.0,
+    "randomSeed": 20260822,
+    "destinationRandomSeed": 20260823,
+    "vehicleTypes": [
+      {
+        "vehicleTypeKey": "PASSENGER_CAV",
+        "vehicleTypeCode": 1,
+        "vehicleTypeName": "CAV小客车",
+        "share": 0.9,
+        "color": "#3D8BFF",
+        "initialSpeedFactor": 1.0,
+        "freeFlowSpeedKph": 60.0
+      },
+      {
+        "vehicleTypeKey": "MEDIUM_COACH_CAV",
+        "vehicleTypeCode": 14,
+        "vehicleTypeName": "CAV中客车",
+        "share": 0.1,
+        "color": "#FFB02E",
+        "initialSpeedFactor": 0.9,
+        "freeFlowSpeedKph": 55.0,
+        "createIfMissing": true,
+        "definition": {
+          "Length": 8.0,
+          "lengthSD": 0.3,
+          "width": 2.4,
+          "widthSD": 0.15,
+          "avgSpeed": 55.0,
+          "speedSD": 5.0,
+          "maxSpeed": 80.0,
+          "avgAcce": 2.5,
+          "acceSD": 0.4,
+          "maxAcce": 4.0,
+          "avgDece": 4.5,
+          "deceSD": 0.5,
+          "maxDece": 6.0,
+          "commercialVehicle": 1,
+          "maxPassengerCapacity": 30,
+          "initialPassengerCount": 10,
+          "vehicleTypeCodeBase": 2
+        }
+      }
+    ],
+    "activeTerminalIds": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B14",
+      "B15",
+      "B16",
+      "B17",
+      "B18",
+      "R01",
+      "R02",
+      "R03",
+      "R04"
+    ],
+    "note": "仿真开始后在合格路段、车道和安全位置组成的候选槽位中随机抽取2000个位置，按90%小客车、10%中客车分批预置，两类车辆均为CAV；货车、电动车、大客车和公交车不参与生成。固定随机种子保证比赛复现实验。同一槽位不会重复，边界路段、短路段和危险加宽后段不参与抽取。预加载窗口结束后由外围18个端点按每点1000辆/h、居民区4个端点按每点100辆/h持续发车，持续发车使用相同车型比例。每辆车从22端点中确定不同于起点的固定终点，运行中只调整路径而不改变终点"
+  },
+  "signals": {
+    "useTraditionalCallback": false,
+    "enabled": true,
+    "minimumArmCount": 3,
+    "armMergeToleranceDeg": 25.0,
+    "phaseGenerationModel": "PHYSICAL_LANE_ATOMIC_OPPOSING_PRIORITY_CONFLICT_GRAPH_V3",
+    "phaseGenerationMode": "CONFLICT_GRAPH_COMPATIBLE",
+    "pairOpposingPhysicalApproaches": true,
+    "opposingToleranceDeg": 35.0,
+    "sharedLanePolicy": "PHYSICAL_LANE_ATOMIC",
+    "numberingOrder": "TESSNG_Y_ASC_X_ASC",
+    "excludeConnectorAreaIds": [],
+    "forceIncludeConnectorAreaIds": [],
+    "permanentGreenIntersectionIds": ["J251", "J253", "J254"],
+    "mergedIntersections": [
+      {
+        "primaryIntersectionId": "J254",
+        "memberIntersectionIds": ["J253"],
+        "displayName": "J253-J254 合并交叉口",
+        "junctionTypeName": "合并T形交叉口",
+        "centerXY": [-1402.949, 1734.010],
+        "stageApproachReplacements": [
+          {
+            "stageId": "J254_P1",
+            "replaceIncomingLaneIds": [6071, 4739],
+            "replaceIncomingLinkIds": [5671, 4432],
+            "replaceDownstreamLaneIds": [6074, 4736, 6204],
+            "replaceMovementLinkPairs": [
+              [5671, 5674],
+              [4432, 4429],
+              [4432, 5726]
+            ],
+            "replaceStraightMovementLinkPairs": [
+              [5671, 5674],
+              [4432, 4429]
+            ],
+            "replaceTurnTypes": ["straight", "right"],
+            "laneMovements": [
+              {"fromLaneId": 6071, "fromLinkId": 5671, "toLinkId": 5674, "toLaneId": 6074, "turnType": "straight"},
+              {"fromLaneId": 4739, "fromLinkId": 4432, "toLinkId": 4429, "toLaneId": 4736, "turnType": "straight"},
+              {"fromLaneId": 4739, "fromLinkId": 4432, "toLinkId": 5726, "toLaneId": 6204, "turnType": "right"}
+            ]
+          },
+          {
+            "stageId": "J254_P2",
+            "replaceIncomingLaneIds": [6202],
+            "replaceIncomingLinkIds": [5725],
+            "replaceDownstreamLaneIds": [4736],
+            "replaceMovementLinkPairs": [
+              [5725, 4429]
+            ],
+            "replaceStraightMovementLinkPairs": [],
+            "replaceTurnTypes": ["right"],
+            "laneMovements": [
+              {"fromLaneId": 6202, "fromLinkId": 5725, "toLinkId": 4429, "toLaneId": 4736, "turnType": "right"}
+            ]
+          }
+        ]
+      }
+    ],
+    "targetCycleSec": 80,
+    "minGreenSec": 12,
+    "maxGreenSec": 45,
+    "yellowSec": 3,
+    "allRedSec": 2,
+    "detectRadiusM": 180,
+    "vehicleRedStopGuardM": 60,
+    "vehicleHardStopLineM": 3,
+    "permissiveRightTurn": true,
+    "permissiveRightProtectedQueueThresholdVeh": 0.5,
+    "vehicleGreenReleaseGuardM": 5,
+    "vehicleGreenReleaseSpeedMps": 0.8,
+    "vehicleGreenReleaseMaximumImpulseAttempts": 1,
+    "vehicleGreenReleaseFrontClearanceM": 6.0,
+    "greenReleaseMaxDownstreamOccupancy": 0.82,
+    "connectorDeadlockRecovery": {
+      "enabled": true,
+      "stoppedThresholdSec": 8.0,
+      "protectedGreenStoppedThresholdSec": 0.8,
+      "frontClearanceM": 20.0,
+      "maximumDownstreamOccupancy": 0.82,
+      "creepSpeedMps": 0.8,
+      "protectedGreenClearSpeedMps": 2.0,
+      "retryIntervalSec": 1.5,
+      "maximumImpulseAttempts": 3,
+      "perIntersectionReleaseCooldownSec": 0.8
+    },
+    "controlIntervalSec": 10,
+    "maxGreenChangeSecPerCycle": 6,
+    "downstreamWeight": 0.65,
+    "arrivalWeight": 0.15,
+    "spillbackThreshold": 0.82,
+    "mode": "CLOUD_EDGE_RULE_BASED_MAX_PRESSURE"
+  },
+  "runtimeControl": {
+    "activeBranch": "IMPROVED_MAX_PRESSURE",
+    "allowedBranches": [
+      "FIXED_TIMING",
+      "IMPROVED_MAX_PRESSURE"
+    ],
+    "note": "仅修改activeBranch即可切换运行期算法，不需要重建路网",
+    "actuatedMaxPressure": {
+      "enabled": true,
+      "decisionIntervalSec": 5.0,
+      "pressureSwitchRatio": 1.15,
+      "earlyPressureSwitchRatio": 1.75,
+      "minimumSwitchPressureGain": 0.5,
+      "capServiceQuantumAtBaseGreen": false,
+      "continuityProtectionEnabled": true,
+      "continuityQueueThresholdVeh": 3.0,
+      "continuityArrivalThresholdVehPerMin": 6.0,
+      "continuitySwitchRatio": 1.28,
+      "continuityMinimumPressureGain": 1.0,
+      "continuityProtectionMaxGreenSec": 30.0,
+      "clearanceLossPenaltyWeight": 0.08,
+      "gapOutHoldSec": 2.5,
+      "queuedPriorityThresholdVeh": 2.0,
+      "emptyApproachThresholdVeh": 0.5,
+      "boundedStarvationEnabled": true,
+      "starvationQueueThresholdVeh": 1.0,
+      "starvationSoftRedSec": 35.0,
+      "starvationHardRedSec": 80.0,
+      "maximumConsecutiveStageSkips": 2,
+      "redAgePressureGain": 0.35,
+      "stageSkipPressureGain": 0.2,
+      "queueAgeAdditiveGain": 0.1,
+      "criticalQueueThresholdVeh": 6.0,
+      "criticalQueueMinimumRedSec": 15.0,
+      "criticalQueueMarginVeh": 0.5,
+      "bidirectionalStagePreferenceEnabled": true,
+      "bidirectionalPreferenceFloorRatio": 0.72,
+      "note": "逐阶段最大压力直接接管停止线灯色；满足最小绿后按压力、真实红灯时间和连续跳过次数切换。当前绿仍有排队或预测车团到达时提高切换门槛，并计入黄灯与全红损失；空相位持续2.5秒才触发gap-out，以减少停车和相位抖动。紧急排队采用实际单车道最大排队；所有切换保留黄灯和全红。"
+    },
+    "localTerminal": {
+      "maximumCycleBiasSec": 8.0
+    },
+    "dynamicAuthority": {
+      "enabled": true,
+      "modelId": "AA_CEMP_DYNAMIC_AUTHORITY_V1",
+      "evaluationIntervalSec": 5.0,
+      "leaseDurationSec": 15.0,
+      "minimumScoreAdvantage": 0.15,
+      "consecutiveAdvantageCycles": 3,
+      "maximumFollowerCorrectionWeight": 0.3,
+      "emergencyLocalQueueVeh": 18.0,
+      "emergencyRegionalCongestion": 0.85,
+      "edgeQueueGain": 0.2,
+      "edgeGrowthGain": 0.15,
+      "edgeArrivalGain": 0.1,
+      "uniqueSignalWriter": true,
+      "handoverKeepsSignalState": true,
+      "note": "按交叉口分别分配本机终端或RSU控制权；双方共享同一改进最大压力内核和安全组合相位，非租约持有者只提供有界辅助提案，不能直接写灯色。"
+    },
+    "improvedMaxPressure": {
+      "modelId": "CONTINUITY_STORAGE_CONSTRAINED_CONFLICT_GRAPH_RSU_IMPROVED_MAX_PRESSURE_V4",
+      "predictionEnabled": true,
+      "spillbackGateEnabled": true,
+      "fairnessEnabled": true,
+      "rsuReliabilityEnabled": true,
+      "compatibleParallelismEnabled": true,
+      "predictionHorizonSec": 15.0,
+      "downstreamQueueWeight": 0.75,
+      "arrivalPredictionWeight": 1.0,
+      "queueGrowthWeight": 0.8,
+      "speedDeficitWeight": 0.35,
+      "freeFlowSpeedMps": 13.9,
+      "occupancyPenaltyWeight": 0.85,
+      "occupancyExponent": 2.0,
+      "minimumDischargeGate": 0.05,
+      "hardSpillbackGateEnabled": true,
+      "spillbackBlockOccupancy": 0.85,
+      "spillbackReleaseOccupancy": 0.75,
+      "spillbackPredictionHorizonSec": 10.0,
+      "occupancyPredictionGain": 0.35,
+      "maximumPredictedOccupancyIncrease": 0.15,
+      "previousWeightSmoothing": 0.35,
+      "minimumWeight": 0.05,
+      "fairnessQueueThresholdVeh": 3.0,
+      "fairnessMinGreenMarginSec": 2.0,
+      "fairnessGain": 0.2,
+      "fairnessMaxCycles": 3.0,
+      "compatibleParallelismGain": 0.30,
+      "virtualRsuReliability": 0.85,
+      "physicalRsuReliability": 0.98,
+      "dynamicCycleEnabled": true,
+      "minimumCycleSec": 60,
+      "maximumCycleSec": 110,
+      "neutralDemandVehPerLane": 4.0,
+      "cycleGainSecPerVehPerLane": 3.0,
+      "maxCycleChangeSecPerUpdate": 8.0,
+      "entryArterialGreenWave": {
+        "enabled": true,
+        "outerBoundaryOnly": true,
+        "gatewaySearchDepth": 3,
+        "unsignalizedSearchDepth": 2,
+        "maximumSignalDepth": 10,
+        "arrivalLeadSec": 3.0,
+        "tailClearanceSec": 5.0,
+        "minimumDemandVeh": 1.0,
+        "entryGatewayPressureGain": 0.25,
+        "progressionPressureGain": 0.35,
+        "maximumPressureMultiplier": 1.55,
+        "maximumGreenExtensionSec": 8.0,
+        "note": "从18个外围发车点向内搜索首个信号路口，并沿连续直行连接构建主干绿波。入口排队阶段获得额外压力权重；上游绿灯车团按连接段与下游路段自由流行程时间触发下游提前绿或延长绿。仍受45秒最大绿、回溢门控和支路防饿死约束。固定配时基准不应用该改进。"
+      }
+    }
+  },
+  "terminalControl": {
+    "enabled": true,
+    "mode": "LOCAL_PC_CENTRAL_TERMINAL",
+    "terminalId": "auto",
+    "virtualRsuStageFusionWeight": 0.35,
+    "physicalRsuStageFusionWeight": 0.65,
+    "physicalRsuMeasurementWeight": 0.65,
+    "downstreamCoordinationWeight": 0.75,
+    "minimumStageMultiplier": 0.25,
+    "maximumStageMultiplier": 1.2,
+    "coordinationSmoothing": 0.4,
+    "neutralNetworkCongestion": 0.3,
+    "networkCycleBiasGainSec": 20.0,
+    "maximumNetworkCycleBiasSec": 8.0,
+    "note": "运行main.py的当前电脑自动作为统一控制终端，不绑定原电脑名称或IP；TESSNG观测模拟RSU，物理小板接入后自动融合"
+  },
+  "cav": {
+    "allVehiclesConnected": true,
+    "dynamicRoutingEnabled": true,
+    "destinationAssignmentMode": "UNIFORM_ALL_OTHER_TERMINALS",
+    "replanAtEveryDecisionPoint": true,
+    "routingUpdateIntervalSec": 5.0,
+    "minimumDecisionRepeatSec": 3.0,
+    "routeSyncRetrySec": 5.0,
+    "lockDecisionUntilIncomingLinkExit": true,
+    "allowLateConnectorReplan": false,
+    "defaultFreeFlowSpeedMps": 13.9,
+    "minimumObservedSpeedMps": 1.5,
+    "jamSpacingM": 7.5,
+    "queuePenaltySecPerVehicle": 1.2,
+    "occupancyPenaltySec": 25.0,
+    "spillbackThreshold": 0.82,
+    "spillbackPenaltySec": 120.0,
+    "signalDelayWeight": 0.8,
+    "cooperativeReservationPenaltySec": 2.5,
+    "routeEventHistorySize": 100,
+    "movementQueuePenaltySecPerVehicle": 3.0,
+    "movementOccupancyPenaltySec": 18.0,
+    "movementSpeedDeficitPenaltySec": 0.5,
+    "laneDropPenaltySecPerLane": 20.0,
+    "narrowLinkCongestionPenaltySec": 30.0,
+    "movementLaneScarcityPenaltySec": 4.0,
+    "laneBalanceEventHistorySize": 50,
+    "laneBalancing": {
+      "enabled": true,
+      "upstreamWideningPreparationEnabled": true,
+      "lockLaneChangesAfterWidening": true,
+      "controlRadiusBeforeStopLineM": 320.0,
+      "connectorSelectionLookaheadM": 320.0,
+      "connectorReselectionIntervalSec": 5.0,
+      "connectorReselectionMinimumScoreGain": 6.0,
+      "connectorEmergencyReselectionMinDistanceM": 220.0,
+      "connectorEmergencyBlockOccupancy": 0.85,
+      "connectorEmergencyReleaseOccupancy": 0.65,
+      "maximumConnectorReselectionsPerLink": 1,
+      "freezeDistanceBeforeStopLineM": 60.0,
+      "laneChangeInitiationCutoffBeforeStopLineM": 220.0,
+      "dismissEarlyLaneChangeInProtectedZone": false,
+      "queueLaneChangeProtectionEnabled": true,
+      "hardFreezeCurrentLaneInProtectedZone": true,
+      "nativeLaneChangeCallbackSteps": 1,
+      "queueLaneLockDistanceM": 90.0,
+      "queueAnticipationFrontDistanceM": 30.0,
+      "minimumMandatoryLaneChangeSpeedMps": 4.0,
+      "maximumMandatoryLaneChangeOccupancy": 0.55,
+      "maximumMandatoryTargetLaneOccupancy": 0.55,
+      "minimumMandatoryFrontGapM": 14.0,
+      "minimumMandatoryRearGapM": 12.0,
+      "rearClosingTimeBufferSec": 1.0,
+      "minimumLaneChangeStartIntervalSecPerLink": 1.5,
+      "maximumConcurrentLaneChangesPerLink": 1,
+      "approachLaneChangeSafeDistanceM": 12.0,
+      "congestedLaneRecoverySpeedMps": 4.0,
+      "congestedLaneRecoveryOccupancy": 0.55,
+      "queueSpeedThresholdMps": 2.0,
+      "minimumQueueGainVeh": 2.0,
+      "minimumVehicleCountGainVeh": 3.0,
+      "queueSwitchRatio": 0.75,
+      "minimumScoreGain": 2.0,
+      "queueWeight": 3.0,
+      "vehicleCountWeight": 0.35,
+      "occupancyWeight": 2.0,
+      "speedDeficitWeight": 0.15,
+      "freeFlowSpeedMps": 13.9,
+      "commandHoldSec": 1.0,
+      "retryCooldownSec": 2.0,
+      "postChangeCooldownSec": 5.0,
+      "maximumRouteAlignmentAttemptsPerLink": 1,
+      "maximumQueueBalanceAttemptsPerLink": 0,
+      "minimumOptionalLaneChangeSpeedMps": 3.0,
+      "maximumOptionalLaneChangeOccupancy": 0.65,
+      "minimumAiBalanceMultiplier": 0.5,
+      "maximumAiBalanceMultiplier": 2.0,
+      "sameMovementOnly": true,
+      "note": "对于停止线前由2变3或3变4的扩宽进口，先把最终转向可达车道沿连接关系反推到扩宽前Link，CAV依固定终点和已下发完整路径在扩宽前完成路径对齐；进入最后220m后不再发起或切换车道/连接器，但允许已开始的换道完整结束，禁止中途撤销造成车辆横置。每个Link最多尝试1次上游路径对齐，低速高占有率下不做可选变道；同一进口Link的候选与下一连接器统一锁定为一个，避免每100ms追逐下游瞬时最空车道。边界持续发车先按固定OD首个转向筛选初始车道。"
+    },
+    "speedGuidanceEnabled": true,
+    "guidanceRadiusM": 180,
+    "minimumAdviceMps": 3.0,
+    "maximumAdviceMps": 16.67,
+    "maxVehicleCommandsPerCycle": 40
+  },
+  "dataCollection": {
+    "enabled": true,
+    "samplePeriodSec": 1.0,
+    "detailArchivePeriodSec": 5.0,
+    "passageArchivePeriodSec": 5.0,
+    "signalLampDetailMode": "ANOMALY_ONLY",
+    "compactLiveOutputs": true,
+    "liveExportPeriodSec": 5.0,
+    "outputRelativeDirectory": "generated/telemetry",
+    "queueDepth": 3,
+    "staleAfterSec": 5,
+    "historyDisplayRecords": 180,
+    "description": "TESSNG运行期真实遥测：汇总状态按控制采样周期更新，全路口明细与通行诊断每5秒归档，灯色或通行异常立即归档；本地后台线程异步落盘"
+  },
+  "experimentEvaluation": {
+    "enabled": true,
+    "scenarioId": "BASE_DEMAND",
+    "archiveEnabled": true,
+    "resultRootRelativeDirectory": "result",
+    "automaticRoundAllocation": true,
+    "automaticComparisonAfterStop": true,
+    "isolationMode": "SAME_CAV_ROUTING_AND_DEMAND_DIFFERENT_SIGNAL_POLICY",
+    "queueSpeedThresholdMps": 2.0,
+    "stopSpeedThresholdMps": 0.5,
+    "resumeSpeedThresholdMps": 1.5,
+    "maximumSampleGapSec": 5.0,
+    "vehicleDisappearanceGraceSec": 10.0,
+    "laneImbalanceThresholdVeh": 2.0,
+    "allLanesQueueThresholdVeh": 2.0,
+    "note": "结果统一写入result；一轮对照由改进最大压力和固定配时两个子实验组成，同轮共用车辆产生/目的地选择种子，不同轮自动更换种子；每个子实验结束立即写入round_NNN/算法名"
+  },
+  "energy": {
+    "modelId": "EV_LONGITUDINAL_POWER_V1",
+    "calibrationStatus": "未使用实车电表标定的工程估算",
+    "vehicleMassKg": 1650.0,
+    "rollingResistanceCoefficient": 0.011,
+    "dragCoefficient": 0.29,
+    "frontalAreaM2": 2.3,
+    "airDensityKgM3": 1.225,
+    "drivetrainEfficiency": 0.9,
+    "regenerativeEfficiency": 0.55,
+    "auxiliaryPowerKw": 0.7,
+    "maximumTractionPowerKw": 160.0,
+    "maximumRegenerationPowerKw": 70.0,
+    "minimumAccelerationMps2": -6.0,
+    "maximumAccelerationMps2": 4.0,
+    "maximumIntegrationGapSec": 5.0,
+    "gridCarbonKgPerKwh": 0.5703
+  },
+  "cloud": {
+    "enabled": false,
+    "baseUrl": "http://127.0.0.1:8080",
+    "samplePeriodSec": 1,
+    "requestTimeoutSec": 1,
+    "commandTtlSec": 15,
+    "applyCloudSignalShare": false,
+    "note": "当前方案不依赖云端；统一调控由本机terminalControl完成"
+  },
+  "rsu": {
+    "enabled": false,
+    "mode": "VIRTUAL_TESSNG_THEN_PHYSICAL_ADAPTER",
+    "endpointConfig": "config/rsu_endpoints.json",
+    "note": "取得济达控制小板的SDK、IP与端口后再启用，未配置时使用虚拟RSU"
+  }
+}

@@ -1,0 +1,17 @@
+/.vs/
+/build/
+/out/
+/bin/
+/runtime/
+/result/
+/generated/native_*.json
+runtime_*.txt
+*.user
+*.suo
+*.VC.db
+*.opendb
+*.obj
+*.pdb
+*.ilk
+*.log
+Thumbs.db

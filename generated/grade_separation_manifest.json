@@ -1,0 +1,4026 @@
+{
+  "schemaVersion": "1.0",
+  "sourceSha256": "c187b8cabf7f1dad9652b2e533a3841aefe84f0fafca6ccd51aa6cf053ba0e1c",
+  "configuration": {
+    "enabled": true,
+    "scopeRoadNames": [
+      "兴贤路",
+      "金湖街"
+    ],
+    "surfaceElevationM": 0.0,
+    "undergroundElevationM": -6.0,
+    "portalRampLengthM": 120.0,
+    "undergroundLinkIds": [
+      4719,
+      4827,
+      4843,
+      4877,
+      5393,
+      5818,
+      5820,
+      6432
+    ],
+    "portalConnectorAreaIds": [
+      3282,
+      3287,
+      3548,
+      3651,
+      3652,
+      3995,
+      3997
+    ],
+    "surfaceConnectorAreaIds": [
+      3853
+    ],
+    "undergroundConnectorAreaIds": [
+      4417
+    ],
+    "undergroundConnectorIds": [
+      11325,
+      11326,
+      11327,
+      11328,
+      11329,
+      11330,
+      11331,
+      11332,
+      11333,
+      11334,
+      11335,
+      11336
+    ],
+    "controlIsolation": "SURFACE_AND_UNDERGROUND_INDEPENDENT",
+    "note": "仅对兴贤路、金湖街内侧双向长Link设置地下层；CA3853保留地面T形交叉口，CA4417为独立地下四向交叉口。7个出入口连接区只允许同一道路地上/地下转换，不参与信号控制"
+  },
+  "analysis": {
+    "enabled": true,
+    "undergroundLinkIds": [
+      4719,
+      4827,
+      4843,
+      4877,
+      5393,
+      5818,
+      5820,
+      6432
+    ],
+    "portalConnectorAreaIds": [
+      3282,
+      3287,
+      3548,
+      3651,
+      3652,
+      3995,
+      3997
+    ],
+    "undergroundConnectorAreaIds": [
+      4417
+    ],
+    "connectorAreaLayers": {
+      "1758": {
+        "connectorAreaId": 1758,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1760": {
+        "connectorAreaId": 1760,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1761": {
+        "connectorAreaId": 1761,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1762": {
+        "connectorAreaId": 1762,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1763": {
+        "connectorAreaId": 1763,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1764": {
+        "connectorAreaId": 1764,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1765": {
+        "connectorAreaId": 1765,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1767": {
+        "connectorAreaId": 1767,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1768": {
+        "connectorAreaId": 1768,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1770": {
+        "connectorAreaId": 1770,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1759": {
+        "connectorAreaId": 1759,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1772": {
+        "connectorAreaId": 1772,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1773": {
+        "connectorAreaId": 1773,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1775": {
+        "connectorAreaId": 1775,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1778": {
+        "connectorAreaId": 1778,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1780": {
+        "connectorAreaId": 1780,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4276": {
+        "connectorAreaId": 4276,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1783": {
+        "connectorAreaId": 1783,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1785": {
+        "connectorAreaId": 1785,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1787": {
+        "connectorAreaId": 1787,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1790": {
+        "connectorAreaId": 1790,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1791": {
+        "connectorAreaId": 1791,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1794": {
+        "connectorAreaId": 1794,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1797": {
+        "connectorAreaId": 1797,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1798": {
+        "connectorAreaId": 1798,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1800": {
+        "connectorAreaId": 1800,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1801": {
+        "connectorAreaId": 1801,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1802": {
+        "connectorAreaId": 1802,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1804": {
+        "connectorAreaId": 1804,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1806": {
+        "connectorAreaId": 1806,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1808": {
+        "connectorAreaId": 1808,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1810": {
+        "connectorAreaId": 1810,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1811": {
+        "connectorAreaId": 1811,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1813": {
+        "connectorAreaId": 1813,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1816": {
+        "connectorAreaId": 1816,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1817": {
+        "connectorAreaId": 1817,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1818": {
+        "connectorAreaId": 1818,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1819": {
+        "connectorAreaId": 1819,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1820": {
+        "connectorAreaId": 1820,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1812": {
+        "connectorAreaId": 1812,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4350": {
+        "connectorAreaId": 4350,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1823": {
+        "connectorAreaId": 1823,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4289": {
+        "connectorAreaId": 4289,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1827": {
+        "connectorAreaId": 1827,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1828": {
+        "connectorAreaId": 1828,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1830": {
+        "connectorAreaId": 1830,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1831": {
+        "connectorAreaId": 1831,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1832": {
+        "connectorAreaId": 1832,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1833": {
+        "connectorAreaId": 1833,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1835": {
+        "connectorAreaId": 1835,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1837": {
+        "connectorAreaId": 1837,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1838": {
+        "connectorAreaId": 1838,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1839": {
+        "connectorAreaId": 1839,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1841": {
+        "connectorAreaId": 1841,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1844": {
+        "connectorAreaId": 1844,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1846": {
+        "connectorAreaId": 1846,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1847": {
+        "connectorAreaId": 1847,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1848": {
+        "connectorAreaId": 1848,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1849": {
+        "connectorAreaId": 1849,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1852": {
+        "connectorAreaId": 1852,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1853": {
+        "connectorAreaId": 1853,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1854": {
+        "connectorAreaId": 1854,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1856": {
+        "connectorAreaId": 1856,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1857": {
+        "connectorAreaId": 1857,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1858": {
+        "connectorAreaId": 1858,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1860": {
+        "connectorAreaId": 1860,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1862": {
+        "connectorAreaId": 1862,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1864": {
+        "connectorAreaId": 1864,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1865": {
+        "connectorAreaId": 1865,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1866": {
+        "connectorAreaId": 1866,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1870": {
+        "connectorAreaId": 1870,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1872": {
+        "connectorAreaId": 1872,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1877": {
+        "connectorAreaId": 1877,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1879": {
+        "connectorAreaId": 1879,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1881": {
+        "connectorAreaId": 1881,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1885": {
+        "connectorAreaId": 1885,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1886": {
+        "connectorAreaId": 1886,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1887": {
+        "connectorAreaId": 1887,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1890": {
+        "connectorAreaId": 1890,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1891": {
+        "connectorAreaId": 1891,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1892": {
+        "connectorAreaId": 1892,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4246": {
+        "connectorAreaId": 4246,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1900": {
+        "connectorAreaId": 1900,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1902": {
+        "connectorAreaId": 1902,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1903": {
+        "connectorAreaId": 1903,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1904": {
+        "connectorAreaId": 1904,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1905": {
+        "connectorAreaId": 1905,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1910": {
+        "connectorAreaId": 1910,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1912": {
+        "connectorAreaId": 1912,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1919": {
+        "connectorAreaId": 1919,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1920": {
+        "connectorAreaId": 1920,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1921": {
+        "connectorAreaId": 1921,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1922": {
+        "connectorAreaId": 1922,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1923": {
+        "connectorAreaId": 1923,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1925": {
+        "connectorAreaId": 1925,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1926": {
+        "connectorAreaId": 1926,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1928": {
+        "connectorAreaId": 1928,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1929": {
+        "connectorAreaId": 1929,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1930": {
+        "connectorAreaId": 1930,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1932": {
+        "connectorAreaId": 1932,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1934": {
+        "connectorAreaId": 1934,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1913": {
+        "connectorAreaId": 1913,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1936": {
+        "connectorAreaId": 1936,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1938": {
+        "connectorAreaId": 1938,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1939": {
+        "connectorAreaId": 1939,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1940": {
+        "connectorAreaId": 1940,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1941": {
+        "connectorAreaId": 1941,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1943": {
+        "connectorAreaId": 1943,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1914": {
+        "connectorAreaId": 1914,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1895": {
+        "connectorAreaId": 1895,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4357": {
+        "connectorAreaId": 4357,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1948": {
+        "connectorAreaId": 1948,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1949": {
+        "connectorAreaId": 1949,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1950": {
+        "connectorAreaId": 1950,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1952": {
+        "connectorAreaId": 1952,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1953": {
+        "connectorAreaId": 1953,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1956": {
+        "connectorAreaId": 1956,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1957": {
+        "connectorAreaId": 1957,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1960": {
+        "connectorAreaId": 1960,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1884": {
+        "connectorAreaId": 1884,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1961": {
+        "connectorAreaId": 1961,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1962": {
+        "connectorAreaId": 1962,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1964": {
+        "connectorAreaId": 1964,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1965": {
+        "connectorAreaId": 1965,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1970": {
+        "connectorAreaId": 1970,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1972": {
+        "connectorAreaId": 1972,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1975": {
+        "connectorAreaId": 1975,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1976": {
+        "connectorAreaId": 1976,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1983": {
+        "connectorAreaId": 1983,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1984": {
+        "connectorAreaId": 1984,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1998": {
+        "connectorAreaId": 1998,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2000": {
+        "connectorAreaId": 2000,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2001": {
+        "connectorAreaId": 2001,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2002": {
+        "connectorAreaId": 2002,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2003": {
+        "connectorAreaId": 2003,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1897": {
+        "connectorAreaId": 1897,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2013": {
+        "connectorAreaId": 2013,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2014": {
+        "connectorAreaId": 2014,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2015": {
+        "connectorAreaId": 2015,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2017": {
+        "connectorAreaId": 2017,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2018": {
+        "connectorAreaId": 2018,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2020": {
+        "connectorAreaId": 2020,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2022": {
+        "connectorAreaId": 2022,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2023": {
+        "connectorAreaId": 2023,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2024": {
+        "connectorAreaId": 2024,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2028": {
+        "connectorAreaId": 2028,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2029": {
+        "connectorAreaId": 2029,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2031": {
+        "connectorAreaId": 2031,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2033": {
+        "connectorAreaId": 2033,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2035": {
+        "connectorAreaId": 2035,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2044": {
+        "connectorAreaId": 2044,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2045": {
+        "connectorAreaId": 2045,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2046": {
+        "connectorAreaId": 2046,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2048": {
+        "connectorAreaId": 2048,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4397": {
+        "connectorAreaId": 4397,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2051": {
+        "connectorAreaId": 2051,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1955": {
+        "connectorAreaId": 1955,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2052": {
+        "connectorAreaId": 2052,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2053": {
+        "connectorAreaId": 2053,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2056": {
+        "connectorAreaId": 2056,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2058": {
+        "connectorAreaId": 2058,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2059": {
+        "connectorAreaId": 2059,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2062": {
+        "connectorAreaId": 2062,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2063": {
+        "connectorAreaId": 2063,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2064": {
+        "connectorAreaId": 2064,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2067": {
+        "connectorAreaId": 2067,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2068": {
+        "connectorAreaId": 2068,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2069": {
+        "connectorAreaId": 2069,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2070": {
+        "connectorAreaId": 2070,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2078": {
+        "connectorAreaId": 2078,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2079": {
+        "connectorAreaId": 2079,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2080": {
+        "connectorAreaId": 2080,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2081": {
+        "connectorAreaId": 2081,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2093": {
+        "connectorAreaId": 2093,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2127": {
+        "connectorAreaId": 2127,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2129": {
+        "connectorAreaId": 2129,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2134": {
+        "connectorAreaId": 2134,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2135": {
+        "connectorAreaId": 2135,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2136": {
+        "connectorAreaId": 2136,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2138": {
+        "connectorAreaId": 2138,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2155": {
+        "connectorAreaId": 2155,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2156": {
+        "connectorAreaId": 2156,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2106": {
+        "connectorAreaId": 2106,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2096": {
+        "connectorAreaId": 2096,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2157": {
+        "connectorAreaId": 2157,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2158": {
+        "connectorAreaId": 2158,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2185": {
+        "connectorAreaId": 2185,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1917": {
+        "connectorAreaId": 1917,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1867": {
+        "connectorAreaId": 1867,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2188": {
+        "connectorAreaId": 2188,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2190": {
+        "connectorAreaId": 2190,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2192": {
+        "connectorAreaId": 2192,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2256": {
+        "connectorAreaId": 2256,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2257": {
+        "connectorAreaId": 2257,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2258": {
+        "connectorAreaId": 2258,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1996": {
+        "connectorAreaId": 1996,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2259": {
+        "connectorAreaId": 2259,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2268": {
+        "connectorAreaId": 2268,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1907": {
+        "connectorAreaId": 1907,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2194": {
+        "connectorAreaId": 2194,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2260": {
+        "connectorAreaId": 2260,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2270": {
+        "connectorAreaId": 2270,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2272": {
+        "connectorAreaId": 2272,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1908": {
+        "connectorAreaId": 1908,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2274": {
+        "connectorAreaId": 2274,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2307": {
+        "connectorAreaId": 2307,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2308": {
+        "connectorAreaId": 2308,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2312": {
+        "connectorAreaId": 2312,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2314": {
+        "connectorAreaId": 2314,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2315": {
+        "connectorAreaId": 2315,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2317": {
+        "connectorAreaId": 2317,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2090": {
+        "connectorAreaId": 2090,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2318": {
+        "connectorAreaId": 2318,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2320": {
+        "connectorAreaId": 2320,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2321": {
+        "connectorAreaId": 2321,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2091": {
+        "connectorAreaId": 2091,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2326": {
+        "connectorAreaId": 2326,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2328": {
+        "connectorAreaId": 2328,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2329": {
+        "connectorAreaId": 2329,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2330": {
+        "connectorAreaId": 2330,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2109": {
+        "connectorAreaId": 2109,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2332": {
+        "connectorAreaId": 2332,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2333": {
+        "connectorAreaId": 2333,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2115": {
+        "connectorAreaId": 2115,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2335": {
+        "connectorAreaId": 2335,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2337": {
+        "connectorAreaId": 2337,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2339": {
+        "connectorAreaId": 2339,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2148": {
+        "connectorAreaId": 2148,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2340": {
+        "connectorAreaId": 2340,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2344": {
+        "connectorAreaId": 2344,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2346": {
+        "connectorAreaId": 2346,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2348": {
+        "connectorAreaId": 2348,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1896": {
+        "connectorAreaId": 1896,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2352": {
+        "connectorAreaId": 2352,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2353": {
+        "connectorAreaId": 2353,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4126": {
+        "connectorAreaId": 4126,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2358": {
+        "connectorAreaId": 2358,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2147": {
+        "connectorAreaId": 2147,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2363": {
+        "connectorAreaId": 2363,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2365": {
+        "connectorAreaId": 2365,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2367": {
+        "connectorAreaId": 2367,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2370": {
+        "connectorAreaId": 2370,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2369": {
+        "connectorAreaId": 2369,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2372": {
+        "connectorAreaId": 2372,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2374": {
+        "connectorAreaId": 2374,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2376": {
+        "connectorAreaId": 2376,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2379": {
+        "connectorAreaId": 2379,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2381": {
+        "connectorAreaId": 2381,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2149": {
+        "connectorAreaId": 2149,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2383": {
+        "connectorAreaId": 2383,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2385": {
+        "connectorAreaId": 2385,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2389": {
+        "connectorAreaId": 2389,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2393": {
+        "connectorAreaId": 2393,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2394": {
+        "connectorAreaId": 2394,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2126": {
+        "connectorAreaId": 2126,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2398": {
+        "connectorAreaId": 2398,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2397": {
+        "connectorAreaId": 2397,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2403": {
+        "connectorAreaId": 2403,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2143": {
+        "connectorAreaId": 2143,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2159": {
+        "connectorAreaId": 2159,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4349": {
+        "connectorAreaId": 4349,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4291": {
+        "connectorAreaId": 4291,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2183": {
+        "connectorAreaId": 2183,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3573": {
+        "connectorAreaId": 3573,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1873": {
+        "connectorAreaId": 1873,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3548": {
+        "connectorAreaId": 3548,
+        "elevationLayer": "PORTAL_TRANSITION",
+        "incidentElevationLayers": [
+          "SURFACE",
+          "UNDERGROUND"
+        ],
+        "isPortalArea": true
+      },
+      "3536": {
+        "connectorAreaId": 3536,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2565": {
+        "connectorAreaId": 2565,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2446": {
+        "connectorAreaId": 2446,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4405": {
+        "connectorAreaId": 4405,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3199": {
+        "connectorAreaId": 3199,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4382": {
+        "connectorAreaId": 4382,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2452": {
+        "connectorAreaId": 2452,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4406": {
+        "connectorAreaId": 4406,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4245": {
+        "connectorAreaId": 4245,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1894": {
+        "connectorAreaId": 1894,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3995": {
+        "connectorAreaId": 3995,
+        "elevationLayer": "PORTAL_TRANSITION",
+        "incidentElevationLayers": [
+          "SURFACE",
+          "UNDERGROUND"
+        ],
+        "isPortalArea": true
+      },
+      "2461": {
+        "connectorAreaId": 2461,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4414": {
+        "connectorAreaId": 4414,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3282": {
+        "connectorAreaId": 3282,
+        "elevationLayer": "PORTAL_TRANSITION",
+        "incidentElevationLayers": [
+          "SURFACE",
+          "UNDERGROUND"
+        ],
+        "isPortalArea": true
+      },
+      "3071": {
+        "connectorAreaId": 3071,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2036": {
+        "connectorAreaId": 2036,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2473": {
+        "connectorAreaId": 2473,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3287": {
+        "connectorAreaId": 3287,
+        "elevationLayer": "PORTAL_TRANSITION",
+        "incidentElevationLayers": [
+          "SURFACE",
+          "UNDERGROUND"
+        ],
+        "isPortalArea": true
+      },
+      "3955": {
+        "connectorAreaId": 3955,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2486": {
+        "connectorAreaId": 2486,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4192": {
+        "connectorAreaId": 4192,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4203": {
+        "connectorAreaId": 4203,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3997": {
+        "connectorAreaId": 3997,
+        "elevationLayer": "PORTAL_TRANSITION",
+        "incidentElevationLayers": [
+          "SURFACE",
+          "UNDERGROUND"
+        ],
+        "isPortalArea": true
+      },
+      "1906": {
+        "connectorAreaId": 1906,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2808": {
+        "connectorAreaId": 2808,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2498": {
+        "connectorAreaId": 2498,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2499": {
+        "connectorAreaId": 2499,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2504": {
+        "connectorAreaId": 2504,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1788": {
+        "connectorAreaId": 1788,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2075": {
+        "connectorAreaId": 2075,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3893": {
+        "connectorAreaId": 3893,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1915": {
+        "connectorAreaId": 1915,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3526": {
+        "connectorAreaId": 3526,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2513": {
+        "connectorAreaId": 2513,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1945": {
+        "connectorAreaId": 1945,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3865": {
+        "connectorAreaId": 3865,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4356": {
+        "connectorAreaId": 4356,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1875": {
+        "connectorAreaId": 1875,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2534": {
+        "connectorAreaId": 2534,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2536": {
+        "connectorAreaId": 2536,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2540": {
+        "connectorAreaId": 2540,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2548": {
+        "connectorAreaId": 2548,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2140": {
+        "connectorAreaId": 2140,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2550": {
+        "connectorAreaId": 2550,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3864": {
+        "connectorAreaId": 3864,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1878": {
+        "connectorAreaId": 1878,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4421": {
+        "connectorAreaId": 4421,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3368": {
+        "connectorAreaId": 3368,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2137": {
+        "connectorAreaId": 2137,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2012": {
+        "connectorAreaId": 2012,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3174": {
+        "connectorAreaId": 3174,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3160": {
+        "connectorAreaId": 3160,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2026": {
+        "connectorAreaId": 2026,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4047": {
+        "connectorAreaId": 4047,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4396": {
+        "connectorAreaId": 4396,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3483": {
+        "connectorAreaId": 3483,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2343": {
+        "connectorAreaId": 2343,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4360": {
+        "connectorAreaId": 4360,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3909": {
+        "connectorAreaId": 3909,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3835": {
+        "connectorAreaId": 3835,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4015": {
+        "connectorAreaId": 4015,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4120": {
+        "connectorAreaId": 4120,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2618": {
+        "connectorAreaId": 2618,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4191": {
+        "connectorAreaId": 4191,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4168": {
+        "connectorAreaId": 4168,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4196": {
+        "connectorAreaId": 4196,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3010": {
+        "connectorAreaId": 3010,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2652": {
+        "connectorAreaId": 2652,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4314": {
+        "connectorAreaId": 4314,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4318": {
+        "connectorAreaId": 4318,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3443": {
+        "connectorAreaId": 3443,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2640": {
+        "connectorAreaId": 2640,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2076": {
+        "connectorAreaId": 2076,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2644": {
+        "connectorAreaId": 2644,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3272": {
+        "connectorAreaId": 3272,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3398": {
+        "connectorAreaId": 3398,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2324": {
+        "connectorAreaId": 2324,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2193": {
+        "connectorAreaId": 2193,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4307": {
+        "connectorAreaId": 4307,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4340": {
+        "connectorAreaId": 4340,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2674": {
+        "connectorAreaId": 2674,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3046": {
+        "connectorAreaId": 3046,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4016": {
+        "connectorAreaId": 4016,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2391": {
+        "connectorAreaId": 2391,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4317": {
+        "connectorAreaId": 4317,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4316": {
+        "connectorAreaId": 4316,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3264": {
+        "connectorAreaId": 3264,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4333": {
+        "connectorAreaId": 4333,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4337": {
+        "connectorAreaId": 4337,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4320": {
+        "connectorAreaId": 4320,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4383": {
+        "connectorAreaId": 4383,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2310": {
+        "connectorAreaId": 2310,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3051": {
+        "connectorAreaId": 3051,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3187": {
+        "connectorAreaId": 3187,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3197": {
+        "connectorAreaId": 3197,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2979": {
+        "connectorAreaId": 2979,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1792": {
+        "connectorAreaId": 1792,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2151": {
+        "connectorAreaId": 2151,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2152": {
+        "connectorAreaId": 2152,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4370": {
+        "connectorAreaId": 4370,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3198": {
+        "connectorAreaId": 3198,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2752": {
+        "connectorAreaId": 2752,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4422": {
+        "connectorAreaId": 4422,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3818": {
+        "connectorAreaId": 3818,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2039": {
+        "connectorAreaId": 2039,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3905": {
+        "connectorAreaId": 3905,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2778": {
+        "connectorAreaId": 2778,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4267": {
+        "connectorAreaId": 4267,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2823": {
+        "connectorAreaId": 2823,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2827": {
+        "connectorAreaId": 2827,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2879": {
+        "connectorAreaId": 2879,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2868": {
+        "connectorAreaId": 2868,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3220": {
+        "connectorAreaId": 3220,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3819": {
+        "connectorAreaId": 3819,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2942": {
+        "connectorAreaId": 2942,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2932": {
+        "connectorAreaId": 2932,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2936": {
+        "connectorAreaId": 2936,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2957": {
+        "connectorAreaId": 2957,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2943": {
+        "connectorAreaId": 2943,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2993": {
+        "connectorAreaId": 2993,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2959": {
+        "connectorAreaId": 2959,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2966": {
+        "connectorAreaId": 2966,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2978": {
+        "connectorAreaId": 2978,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "2994": {
+        "connectorAreaId": 2994,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3024": {
+        "connectorAreaId": 3024,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4351": {
+        "connectorAreaId": 4351,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "1781": {
+        "connectorAreaId": 1781,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3073": {
+        "connectorAreaId": 3073,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3095": {
+        "connectorAreaId": 3095,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3107": {
+        "connectorAreaId": 3107,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3124": {
+        "connectorAreaId": 3124,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3191": {
+        "connectorAreaId": 3191,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3189": {
+        "connectorAreaId": 3189,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3183": {
+        "connectorAreaId": 3183,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4339": {
+        "connectorAreaId": 4339,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3188": {
+        "connectorAreaId": 3188,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3259": {
+        "connectorAreaId": 3259,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3247": {
+        "connectorAreaId": 3247,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3234": {
+        "connectorAreaId": 3234,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3310": {
+        "connectorAreaId": 3310,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3321": {
+        "connectorAreaId": 3321,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3318": {
+        "connectorAreaId": 3318,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3344": {
+        "connectorAreaId": 3344,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3334": {
+        "connectorAreaId": 3334,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3379": {
+        "connectorAreaId": 3379,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3387": {
+        "connectorAreaId": 3387,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3383": {
+        "connectorAreaId": 3383,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3386": {
+        "connectorAreaId": 3386,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3391": {
+        "connectorAreaId": 3391,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3397": {
+        "connectorAreaId": 3397,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3412": {
+        "connectorAreaId": 3412,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3413": {
+        "connectorAreaId": 3413,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3455": {
+        "connectorAreaId": 3455,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3447": {
+        "connectorAreaId": 3447,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3453": {
+        "connectorAreaId": 3453,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3450": {
+        "connectorAreaId": 3450,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3481": {
+        "connectorAreaId": 3481,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3480": {
+        "connectorAreaId": 3480,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3505": {
+        "connectorAreaId": 3505,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3496": {
+        "connectorAreaId": 3496,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3790": {
+        "connectorAreaId": 3790,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3513": {
+        "connectorAreaId": 3513,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3522": {
+        "connectorAreaId": 3522,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3529": {
+        "connectorAreaId": 3529,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3542": {
+        "connectorAreaId": 3542,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3534": {
+        "connectorAreaId": 3534,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3547": {
+        "connectorAreaId": 3547,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3576": {
+        "connectorAreaId": 3576,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3579": {
+        "connectorAreaId": 3579,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3572": {
+        "connectorAreaId": 3572,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3582": {
+        "connectorAreaId": 3582,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4416": {
+        "connectorAreaId": 4416,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3651": {
+        "connectorAreaId": 3651,
+        "elevationLayer": "PORTAL_TRANSITION",
+        "incidentElevationLayers": [
+          "SURFACE",
+          "UNDERGROUND"
+        ],
+        "isPortalArea": true
+      },
+      "3652": {
+        "connectorAreaId": 3652,
+        "elevationLayer": "PORTAL_TRANSITION",
+        "incidentElevationLayers": [
+          "SURFACE",
+          "UNDERGROUND"
+        ],
+        "isPortalArea": true
+      },
+      "4385": {
+        "connectorAreaId": 4385,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3684": {
+        "connectorAreaId": 3684,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3689": {
+        "connectorAreaId": 3689,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3705": {
+        "connectorAreaId": 3705,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3727": {
+        "connectorAreaId": 3727,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3788": {
+        "connectorAreaId": 3788,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3789": {
+        "connectorAreaId": 3789,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3793": {
+        "connectorAreaId": 3793,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3820": {
+        "connectorAreaId": 3820,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3814": {
+        "connectorAreaId": 3814,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4409": {
+        "connectorAreaId": 4409,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4408": {
+        "connectorAreaId": 4408,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4410": {
+        "connectorAreaId": 4410,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3849": {
+        "connectorAreaId": 3849,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3853": {
+        "connectorAreaId": 3853,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4417": {
+        "connectorAreaId": 4417,
+        "elevationLayer": "UNDERGROUND",
+        "incidentElevationLayers": [
+          "UNDERGROUND"
+        ],
+        "isPortalArea": false
+      },
+      "3861": {
+        "connectorAreaId": 3861,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3863": {
+        "connectorAreaId": 3863,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3868": {
+        "connectorAreaId": 3868,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3869": {
+        "connectorAreaId": 3869,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3894": {
+        "connectorAreaId": 3894,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4374": {
+        "connectorAreaId": 4374,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3904": {
+        "connectorAreaId": 3904,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3897": {
+        "connectorAreaId": 3897,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4312": {
+        "connectorAreaId": 4312,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "3977": {
+        "connectorAreaId": 3977,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4007": {
+        "connectorAreaId": 4007,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4311": {
+        "connectorAreaId": 4311,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4021": {
+        "connectorAreaId": 4021,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4026": {
+        "connectorAreaId": 4026,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4065": {
+        "connectorAreaId": 4065,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4059": {
+        "connectorAreaId": 4059,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4048": {
+        "connectorAreaId": 4048,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4052": {
+        "connectorAreaId": 4052,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4081": {
+        "connectorAreaId": 4081,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4085": {
+        "connectorAreaId": 4085,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4125": {
+        "connectorAreaId": 4125,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4131": {
+        "connectorAreaId": 4131,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4424": {
+        "connectorAreaId": 4424,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4143": {
+        "connectorAreaId": 4143,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4380": {
+        "connectorAreaId": 4380,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4182": {
+        "connectorAreaId": 4182,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4202": {
+        "connectorAreaId": 4202,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4212": {
+        "connectorAreaId": 4212,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4214": {
+        "connectorAreaId": 4214,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4223": {
+        "connectorAreaId": 4223,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4220": {
+        "connectorAreaId": 4220,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4234": {
+        "connectorAreaId": 4234,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4239": {
+        "connectorAreaId": 4239,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4299": {
+        "connectorAreaId": 4299,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4358": {
+        "connectorAreaId": 4358,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      },
+      "4359": {
+        "connectorAreaId": 4359,
+        "elevationLayer": "SURFACE",
+        "incidentElevationLayers": [
+          "SURFACE"
+        ],
+        "isPortalArea": false
+      }
+    },
+    "mixedLayerConnectorsOutsidePortals": []
+  }
+}

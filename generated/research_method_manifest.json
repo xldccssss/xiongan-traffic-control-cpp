@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0",
+  "sourceSha256": "c187b8cabf7f1dad9652b2e533a3841aefe84f0fafca6ccd51aa6cf053ba0e1c",
+  "methodIdentity": {
+    "mainMethodId": "CSC_LACG_IMP_V4",
+    "publicationMethodId": "CSC_MRCG_BP_IMP",
+    "engineeringCompatibilityIdRetained": false,
+    "mainMethodChineseName": "连续放行与下游存储约束的转向分辨冲突图双向优先改进最大压力",
+    "mainMethodEnglishName": "Continuity-and-Storage-Constrained Movement-Resolved Conflict-Graph Bidirectional-Priority Improved Max Pressure",
+    "explicitlyNot": [
+      "REVERSIBLE_MAX_PRESSURE"
+    ]
+  },
+  "phaseFeasibilityEvidence": {
+    "phaseGenerationModel": "PHYSICAL_LANE_ATOMIC_OPPOSING_PRIORITY_CONFLICT_GRAPH_V3",
+    "phaseGenerationMode": "CONFLICT_GRAPH_COMPATIBLE",
+    "intersectionCount": 255,
+    "stageCount": 1038,
+    "stageKindCounts": {
+      "OPPOSING_THROUGH_RIGHT": 190,
+      "SINGLE_APPROACH_PROTECTED_FALLBACK": 827,
+      "OPPOSING_PROTECTED_LEFT": 21
+    },
+    "combinedStageCount": 211,
+    "singleApproachStageCount": 827,
+    "bidirectionalStageRatio": 0.2033,
+    "sharedLaneSafetyFallbackStageCount": 706,
+    "movementConflictPairCount": 18174,
+    "conflictingMovementPairCount": 11366,
+    "uniquePhysicalLaneBindingCount": 1595,
+    "uniqueLaneToLaneMovementBindingCount": 2974,
+    "duplicatePhysicalLaneBindings": {},
+    "duplicateLaneToLaneMovementBindings": {},
+    "onePhysicalLaneOneStageCertified": true,
+    "oneLaneToLaneMovementOneStageCertified": true
+  },
+  "improvedMaxPressureEvidence": {
+    "modelId": "CONTINUITY_STORAGE_CONSTRAINED_CONFLICT_GRAPH_RSU_IMPROVED_MAX_PRESSURE_V4",
+    "prediction": true,
+    "spillbackGate": true,
+    "fairness": true,
+    "rsuReliability": true,
+    "compatibleParallelism": true,
+    "bidirectionalNearOptimalPreference": true,
+    "bidirectionalPreferenceFloorRatio": 0.85,
+    "boundedStarvationService": true,
+    "ablationSwitches": [
+      "predictionEnabled",
+      "spillbackGateEnabled",
+      "fairnessEnabled",
+      "rsuReliabilityEnabled",
+      "compatibleParallelismEnabled",
+      "boundedStarvationEnabled",
+      "bidirectionalStagePreferenceEnabled"
+    ]
+  },
+  "publicationStatus": {
+    "claimStatus": "IMPLEMENTED_METHOD_TO_BE_VALIDATED",
+    "noveltySearchStillRequired": true,
+    "requiredEvidence": [
+      "MATCHED_SEED_BASELINES",
+      "COMPONENT_ABLATION",
+      "BOOTSTRAP_CI",
+      "PAIRED_SIGN_FLIP_TEST",
+      "MULTI_DEMAND_ROBUSTNESS",
+      "RSU_NOISE_DROPOUT_ROBUSTNESS"
+    ]
+  }
+}

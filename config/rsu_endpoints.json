@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0",
+  "enabled": false,
+  "virtualSimulationEnabled": true,
+  "transport": "udp",
+  "localHost": "0.0.0.0",
+  "localPort": 18002,
+  "measurementTtlSec": 5.0,
+  "measurementFrame": {
+    "type": "LINK_METRICS",
+    "fields": [
+      "linkId",
+      "vehicleCount",
+      "queueVeh",
+      "meanSpeedMps",
+      "occupancy",
+      "closed",
+      "timestamp"
+    ]
+  },
+  "endpoints": [],
+  "example": {
+    "intersectionId": "J001",
+    "host": "192.168.1.50",
+    "port": 19001,
+    "boardId": "JIDA-RSU-001"
+  }
+}
