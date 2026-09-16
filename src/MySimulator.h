@@ -15,6 +15,7 @@
 #include "core/ProjectModel.h"
 #include "core/RoutingEngine.h"
 #include "core/SignalEngine.h"
+#include "core/SimulationRestartGuard.h"
 #include "core/TrafficAggregator.h"
 
 class ILaneConnector;
@@ -92,6 +93,7 @@ private:
     void publishTelemetry();
     void updateClosedLoopSpeed(double simulationTimeSec);
     bool runtimeSmokeTestRequested() const;
+    bool runtimeResetSmokeTestRequested() const;
     double runtimeSmokeTestDurationSec() const;
     int runtimeSmokeTargetMultiple() const;
     void finishRuntimeSmokeTest(bool success, const QString& error = QString());
@@ -102,6 +104,8 @@ private:
     void finishComparisonBatch(const QString& status);
     bool writeComparisonRoundManifest(QString* error = nullptr) const;
     void publishComparisonState(const QString& status);
+    void scheduleManualResetStart(int delayMs);
+    void cancelManualResetStart();
 
     ProjectModel* m_model = nullptr;
     // Native simulation workers may report vehicle departures concurrently
@@ -169,8 +173,11 @@ private:
     int m_trajectoryRetentionPoints = 30;
     int m_maximumDisplayedVehicles = 400;
     bool m_running = false;
-    bool m_restartAfterStop = false;
+    SimulationRestartGuard m_manualResetGuard;
+    std::uint64_t m_scheduledManualResetGeneration = 0;
     bool m_runtimeSmokeCompleted = false;
+    bool m_runtimeResetTransitionRequested = false;
+    int m_runtimeSmokeRunCount = 0;
     bool m_comparisonActive = false;
     bool m_comparisonPendingStart = false;
     bool m_comparisonCancelRequested = false;

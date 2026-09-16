@@ -74,6 +74,13 @@ bool MySimulator::runtimeSmokeTestRequested() const
         QStringLiteral("--runtime-smoke-test"));
 }
 
+bool MySimulator::runtimeResetSmokeTestRequested() const
+{
+    const QCoreApplication* application = QCoreApplication::instance();
+    return application && application->arguments().contains(
+        QStringLiteral("--runtime-reset-smoke-test"));
+}
+
 double MySimulator::runtimeSmokeTestDurationSec() const
 {
     const QCoreApplication* application = QCoreApplication::instance();
@@ -114,6 +121,17 @@ void MySimulator::finishRuntimeSmokeTest(bool success, const QString& error)
     report.insert(QStringLiteral("error"), error);
     report.insert(QStringLiteral("simulationTimeSec"), m_lastStepSec);
     report.insert(QStringLiteral("algorithm"), algorithmName());
+    report.insert(QStringLiteral("runtimeRunCount"), m_runtimeSmokeRunCount);
+    QJsonArray runtimeArguments;
+    for (const QString& argument : QCoreApplication::arguments())
+        runtimeArguments.append(argument);
+    report.insert(QStringLiteral("runtimeArguments"), runtimeArguments);
+    report.insert(QStringLiteral("runtimeResetSmokeRequested"),
+                  runtimeResetSmokeTestRequested());
+    report.insert(QStringLiteral("manualResetTransitionVerified"),
+        runtimeResetSmokeTestRequested()
+            && m_runtimeSmokeRunCount >= 2
+            && algorithmName() == QStringLiteral("FIXED_TIMING"));
     report.insert(QStringLiteral("signalLampCount"), m_signalLamps.size());
     report.insert(QStringLiteral("expectedSignalLampCount"),
                   m_model->expectedSignalLampCount());
@@ -173,6 +191,10 @@ void MySimulator::finishRuntimeSmokeTest(bool success, const QString& error)
                   m_laneBalancer.wideningCorridorCount());
     report.insert(QStringLiteral("wideningUnresolvedCount"),
                   m_laneBalancer.wideningUnresolvedCount());
+    report.insert(QStringLiteral("wideningPolicyReady"),
+                  m_laneBalancer.topologyPolicyReady());
+    report.insert(QStringLiteral("wideningPolicyBuildCount"),
+                  m_laneBalancer.topologyPolicyBuildCount());
     report.insert(QStringLiteral("preloadCreated"), m_demand.preloadCreated());
     report.insert(QStringLiteral("preloadTarget"), m_demand.preloadTarget());
     report.insert(QStringLiteral("vehiclesWithFixedOd"),
@@ -232,6 +254,10 @@ void MySimulator::finishRuntimeSmokeTest(bool success, const QString& error)
     QVector<QueueDiagnostic> queueDiagnostics;
     const QVector<QVector<StageTraffic>>& stageTraffic = m_traffic.stages();
     const QVector<IntersectionSignalState>& signalStates = m_signals.states();
+    int forwardPressureStageCount = 0;
+    int reversePressureStageCount = 0;
+    int balancedPressureStageCount = 0;
+    double maximumReversePressureVeh = 0.0;
     for (int i = 0; i < m_model->intersections().size(); ++i) {
         const IntersectionDefinition& intersection = m_model->intersections()[i];
         const IntersectionSignalState state = signalStates.value(i);
@@ -256,9 +282,55 @@ void MySimulator::finishRuntimeSmokeTest(bool success, const QString& error)
                                     state.stageServiceCount.value(s));
             diagnostic.value.insert(QStringLiteral("score"),
                                     state.lastEffectiveScores.value(s));
+            if (s < state.lastReversiblePressure.size()) {
+                const ReversiblePressureEvidence pressure =
+                    state.lastReversiblePressure[s];
+                diagnostic.value.insert(QStringLiteral("pressureDirection"),
+                    ReversibleMaxPressure::directionName(pressure.direction));
+                diagnostic.value.insert(QStringLiteral("forwardPressureVeh"),
+                    pressure.forwardPressureVeh);
+                diagnostic.value.insert(QStringLiteral("reversePressureVeh"),
+                    pressure.reversePressureVeh);
+                diagnostic.value.insert(QStringLiteral("signedPressureVeh"),
+                    pressure.signedPressureVeh);
+                diagnostic.value.insert(QStringLiteral("usablePressureVeh"),
+                    pressure.usablePressureVeh);
+                if (pressure.direction == PressurePropagationDirection::Forward)
+                    ++forwardPressureStageCount;
+                else if (pressure.direction
+                         == PressurePropagationDirection::Reverse)
+                    ++reversePressureStageCount;
+                else
+                    ++balancedPressureStageCount;
+                maximumReversePressureVeh = qMax(
+                    maximumReversePressureVeh, pressure.reversePressureVeh);
+            }
             queueDiagnostics.push_back(diagnostic);
         }
     }
+    const QJsonObject improvedPressure = m_model->scenario()
+        .value(QStringLiteral("runtimeControl")).toObject()
+        .value(QStringLiteral("improvedMaxPressure")).toObject();
+    const QJsonObject reversibleConfiguration = improvedPressure
+        .value(QStringLiteral("reversibleMaxPressure")).toObject();
+    QJsonObject reversibleSummary;
+    reversibleSummary.insert(QStringLiteral("enabled"),
+        reversibleConfiguration.value(QStringLiteral("enabled")).toBool(true));
+    reversibleSummary.insert(QStringLiteral("modelId"),
+        reversibleConfiguration.value(QStringLiteral("modelId"))
+            .toString(ReversibleMaxPressure::defaultModelId()));
+    reversibleSummary.insert(QStringLiteral("forwardStageCount"),
+                             forwardPressureStageCount);
+    reversibleSummary.insert(QStringLiteral("reverseStageCount"),
+                             reversePressureStageCount);
+    reversibleSummary.insert(QStringLiteral("balancedStageCount"),
+                             balancedPressureStageCount);
+    reversibleSummary.insert(QStringLiteral("maximumReversePressureVeh"),
+                             maximumReversePressureVeh);
+    reversibleSummary.insert(QStringLiteral("changesVehicleDirection"), false);
+    reversibleSummary.insert(QStringLiteral("changesLaneDirection"), false);
+    reversibleSummary.insert(QStringLiteral("changesLinkDirection"), false);
+    report.insert(QStringLiteral("reversibleMaxPressure"), reversibleSummary);
     std::sort(queueDiagnostics.begin(), queueDiagnostics.end(),
               [](const QueueDiagnostic& a, const QueueDiagnostic& b) {
                   return a.queue > b.queue;
@@ -294,19 +366,26 @@ void MySimulator::finishRuntimeSmokeTest(bool success, const QString& error)
 
 void MySimulator::beforeStart(bool& keepOn)
 {
+    // Reaching beforeStart means TESSNG accepted the queued manual-reset start.
+    // Invalidate any older reset timer before rebuilding this run's state.
+    m_manualResetGuard.startAccepted();
+    m_scheduledManualResetGeneration = 0;
     keepOn = m_model != nullptr;
     if (!keepOn) return;
     SimuInterface* simulation = gpTessInterface->simuInterface();
     if (runtimeSmokeTestRequested()) {
         m_targetMultiple = runtimeSmokeTargetMultiple();
-        const QString prefix = QStringLiteral("--runtime-smoke-branch=");
-        for (const QString& argument : QCoreApplication::arguments()) {
-            if (!argument.startsWith(prefix)) continue;
-            const QString branch = argument.mid(prefix.size()).trimmed().toUpper();
-            if (branch == "FIXED_TIMING")
-                m_requestedBranch = ControlBranch::FixedTiming;
-            else if (branch == "IMPROVED_MAX_PRESSURE")
-                m_requestedBranch = ControlBranch::ImprovedMaxPressure;
+        if (!runtimeResetSmokeTestRequested() || m_runtimeSmokeRunCount == 0) {
+            const QString prefix = QStringLiteral("--runtime-smoke-branch=");
+            for (const QString& argument : QCoreApplication::arguments()) {
+                if (!argument.startsWith(prefix)) continue;
+                const QString branch =
+                    argument.mid(prefix.size()).trimmed().toUpper();
+                if (branch == "FIXED_TIMING")
+                    m_requestedBranch = ControlBranch::FixedTiming;
+                else if (branch == "IMPROVED_MAX_PRESSURE")
+                    m_requestedBranch = ControlBranch::ImprovedMaxPressure;
+            }
         }
     }
     simulation->setRandSeed(m_requestedVehicleSeed);
@@ -447,6 +526,7 @@ void MySimulator::beforeStart(bool& keepOn)
 void MySimulator::afterStart()
 {
     m_running = true;
+    if (runtimeSmokeTestRequested()) ++m_runtimeSmokeRunCount;
     m_metrics.start(algorithmName(),
                     m_requestedVehicleSeed,
                     m_requestedDestinationSeed,
@@ -466,6 +546,13 @@ void MySimulator::afterStop()
 {
     m_running = false;
     if (runtimeSmokeTestRequested()) {
+        if (runtimeResetSmokeTestRequested()
+            && !m_runtimeSmokeCompleted
+            && m_manualResetGuard.pending()
+            && m_manualResetGuard.startRequested()) {
+            scheduleManualResetStart(350);
+            return;
+        }
         if (!m_runtimeSmokeCompleted)
             finishRuntimeSmokeTest(false, QStringLiteral("simulation stopped before smoke criteria"));
         QTimer::singleShot(0, QCoreApplication::instance(), &QCoreApplication::quit);
@@ -517,12 +604,48 @@ void MySimulator::afterStop()
         scheduleComparisonStart();
         return;
     }
-    if (m_restartAfterStop) {
-        m_restartAfterStop = false;
-        QTimer::singleShot(350, this, [this]() {
-            gpTessInterface->simuInterface()->startSimu();
-        });
+    if (m_manualResetGuard.pending()) {
+        if (m_manualResetGuard.startRequested()) {
+            scheduleManualResetStart(350);
+        } else {
+            emit eventGenerated(QStringLiteral(
+                "本轮已重置并保持停止；选择算法后点击“开始”运行新一轮"));
+        }
     }
+}
+
+void MySimulator::scheduleManualResetStart(int delayMs)
+{
+    if (!m_manualResetGuard.pending()
+        || !m_manualResetGuard.startRequested()) return;
+    const std::uint64_t generation = m_manualResetGuard.generation();
+    if (m_scheduledManualResetGeneration == generation) return;
+    m_scheduledManualResetGeneration = generation;
+    QTimer::singleShot(qMax(0, delayMs), this, [this, generation]() {
+        if (m_scheduledManualResetGeneration == generation)
+            m_scheduledManualResetGeneration = 0;
+        if (!m_manualResetGuard.isCurrent(generation)
+            || !m_manualResetGuard.startRequested()) return;
+
+        SimuInterface* simulation = gpTessInterface->simuInterface();
+        // m_running remains true until afterStop(). It closes the gap in which
+        // the SDK flags are already false but the native stop is not complete.
+        if (m_running || simulation->isRunning() || simulation->isPausing())
+            return;
+
+        emit eventGenerated(QStringLiteral(
+            "重置完成，正在从0秒启动新一轮：算法=%1").arg(
+                m_requestedBranch == ControlBranch::FixedTiming
+                    ? QStringLiteral("FIXED_TIMING")
+                    : QStringLiteral("IMPROVED_MAX_PRESSURE")));
+        simulation->startSimu();
+    });
+}
+
+void MySimulator::cancelManualResetStart()
+{
+    m_manualResetGuard.cancel();
+    m_scheduledManualResetGeneration = 0;
 }
 
 void MySimulator::publishComparisonState(const QString& status)
@@ -1939,6 +2062,7 @@ void MySimulator::publishTelemetry()
 
     const IntersectionDefinition& intersection = m_model->intersections()[index];
     const QVector<StageTraffic> localStages = m_traffic.stages().value(index);
+    const IntersectionSignalState state = m_signals.states().value(index);
     double localQueue = 0.0;
     double localVehicles = 0.0;
     double localSpeedWeighted = 0.0;
@@ -1959,6 +2083,14 @@ void MySimulator::publishTelemetry()
         stage.insert("downstreamQueueVeh", traffic.downstreamQueueVeh);
         stage.insert("occupancy", traffic.downstreamOccupancy);
         stage.insert("color", m_signals.colorForStage(index, stageIndex));
+        const ReversiblePressureEvidence pressure =
+            state.lastReversiblePressure.value(stageIndex);
+        stage.insert("pressureDirection",
+            ReversibleMaxPressure::directionName(pressure.direction));
+        stage.insert("forwardPressureVeh", pressure.forwardPressureVeh);
+        stage.insert("reversePressureVeh", pressure.reversePressureVeh);
+        stage.insert("signedPressureVeh", pressure.signedPressureVeh);
+        stage.insert("usablePressureVeh", pressure.usablePressureVeh);
         stageValues.push_back(stage);
     }
     values["selectedIndex"] = index;
@@ -1985,7 +2117,6 @@ void MySimulator::publishTelemetry()
     values["mergedIntersection"] = !intersection.mergedMemberIds.isEmpty();
     values["stages"] = stageValues;
 
-    const IntersectionSignalState state = m_signals.states().value(index);
     values["phaseElapsed"] = qMax(0.0, data.simulationTimeSec - state.stateStartedSec);
     values["leaseUntil"] = state.authorityLeaseUntilSec;
     QString signalColor = "UNSIGNALIZED";
@@ -2161,10 +2292,30 @@ void MySimulator::afterOneStep()
         ++m_telemetrySampleCount;
         publishTelemetry();
     }
+    if (runtimeResetSmokeTestRequested()
+        && m_runtimeSmokeRunCount == 1
+        && !m_runtimeResetTransitionRequested
+        && nowSec >= runtimeSmokeTestDurationSec()) {
+        m_runtimeResetTransitionRequested = true;
+        requestStop();
+        setAlgorithm(QStringLiteral("FIXED_TIMING"));
+        requestReset();
+        requestStart();
+        return;
+    }
+    if (runtimeResetSmokeTestRequested()
+        && m_runtimeSmokeRunCount == 1
+        && m_runtimeResetTransitionRequested)
+        return;
     if (runtimeSmokeTestRequested()
         && nowSec >= runtimeSmokeTestDurationSec()) {
         const bool success = m_signalLamps.size() == m_model->expectedSignalLampCount()
             && m_laneBalancer.wideningUnresolvedCount() == 0
+            && (!runtimeResetSmokeTestRequested()
+                || (m_runtimeSmokeRunCount >= 2
+                    && algorithmName() == QStringLiteral("FIXED_TIMING")
+                    && m_laneBalancer.topologyPolicyReady()
+                    && m_laneBalancer.topologyPolicyBuildCount() == 1))
             && m_demand.preloadCreated() > 0
             && m_routing.vehicleCountWithOd() > 0
             && m_routing.routeDecisionCount() > 0
@@ -2387,6 +2538,16 @@ void MySimulator::leaveForNextLaneObj(IVehicle* vehicle, ILaneObject* current,
 void MySimulator::requestStart()
 {
     SimuInterface* simulation = gpTessInterface->simuInterface();
+    if (m_manualResetGuard.pending()) {
+        m_manualResetGuard.requestStart();
+        if (m_running || simulation->isRunning() || simulation->isPausing()) {
+            emit eventGenerated(QStringLiteral(
+                "已收到开始指令；等待TESSNG完成重置后启动所选算法"));
+            return;
+        }
+        scheduleManualResetStart(0);
+        return;
+    }
     if (simulation->isPausing()) simulation->pauseSimuOrNot();
     else if (!simulation->isRunning()) simulation->startSimu();
 }
@@ -2404,13 +2565,30 @@ void MySimulator::requestReset()
         return;
     }
     SimuInterface* simulation = gpTessInterface->simuInterface();
-    if (simulation->isRunning() || simulation->isPausing()) {
-        m_restartAfterStop = true;
+    const bool simulatorActive = simulation->isRunning()
+        || simulation->isPausing();
+    const ManualResetAction action = m_manualResetGuard.requestReset(
+        m_running, simulatorActive);
+    m_scheduledManualResetGeneration = 0;
+    const QString selected = m_requestedBranch == ControlBranch::FixedTiming
+        ? QStringLiteral("FIXED_TIMING")
+        : QStringLiteral("IMPROVED_MAX_PRESSURE");
+    if (action == ManualResetAction::RequestStop) {
+        emit eventGenerated(QStringLiteral(
+            "正在重置本轮：待执行算法=%1；完整停止后将保持待启动状态")
+            .arg(selected));
         simulation->stopSimu();
-    } else {
-        m_restartAfterStop = false;
-        QTimer::singleShot(0, this, [simulation]() { simulation->startSimu(); });
+        return;
     }
+    if (action == ManualResetAction::WaitForStopCallback) {
+        emit eventGenerated(QStringLiteral(
+            "正在重置本轮：待执行算法=%1；等待停止完成后保持待启动状态")
+            .arg(selected));
+        return;
+    }
+    emit eventGenerated(QStringLiteral(
+        "本轮已重置并保持停止：待执行算法=%1；点击“开始”后从0秒运行")
+        .arg(selected));
 }
 
 void MySimulator::requestStop()
@@ -2419,7 +2597,7 @@ void MySimulator::requestStop()
         requestCancelComparison();
         return;
     }
-    m_restartAfterStop = false;
+    cancelManualResetStart();
     gpTessInterface->simuInterface()->stopSimu();
 }
 
@@ -2514,7 +2692,7 @@ void MySimulator::requestComparison(int rounds)
     m_manualBranchBeforeComparison = m_requestedBranch;
     m_manualVehicleSeedBeforeComparison = m_requestedVehicleSeed;
     m_manualDestinationSeedBeforeComparison = m_requestedDestinationSeed;
-    m_restartAfterStop = false;
+    cancelManualResetStart();
     SimuInterface* simulation = gpTessInterface->simuInterface();
     if (simulation->isRunning() || simulation->isPausing()) {
         m_comparisonPendingStart = true;

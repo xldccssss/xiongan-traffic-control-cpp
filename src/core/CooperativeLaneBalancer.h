@@ -48,6 +48,8 @@ public:
     int completedCount() const { return m_completedCount; }
     int wideningCorridorCount() const { return m_wideningCorridorCount; }
     int wideningUnresolvedCount() const { return m_wideningUnresolvedCount; }
+    bool topologyPolicyReady() const { return m_topologyPolicyReady; }
+    int topologyPolicyBuildCount() const { return m_topologyPolicyBuildCount; }
 
 private:
     struct LanePosition { qint64 linkId = 0; int index = -1; };
@@ -88,4 +90,6 @@ private:
     int m_completedCount = 0;
     int m_wideningCorridorCount = 0;
     int m_wideningUnresolvedCount = 0;
+    bool m_topologyPolicyReady = false;
+    int m_topologyPolicyBuildCount = 0;
 };

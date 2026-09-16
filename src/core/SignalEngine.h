@@ -7,6 +7,7 @@
 #include <QVector>
 
 #include "ProjectModel.h"
+#include "ReversibleMaxPressure.h"
 #include "TrafficAggregator.h"
 
 enum class ControlBranch
@@ -38,6 +39,7 @@ struct IntersectionSignalState
     QVector<double> lastQueues;
     QVector<double> lastScores;
     QVector<double> lastEffectiveScores;
+    QVector<ReversiblePressureEvidence> lastReversiblePressure;
     QVector<double> stageRedStartedSec;
     QVector<double> stageLastGreenStartedSec;
     QVector<double> terminalMultipliers;
@@ -75,6 +77,7 @@ struct StagePressureEvidence
     double greenWaveMultiplier = 1.0;
     bool greenWaveArrivalActive = false;
     bool spillbackBlocked = false;
+    ReversiblePressureEvidence reversiblePressure;
 };
 
 class SignalEngine
@@ -159,6 +162,7 @@ private:
     QJsonObject m_greenWaveConfig;
     QJsonObject m_authorityConfig;
     QJsonObject m_terminalConfig;
+    ReversibleMaxPressure m_reversiblePressure;
     QVector<QVector<QVector<GreenWaveArc>>> m_greenWaveSources;
     QVector<QVector<bool>> m_entryGreenWaveGateways;
     QVector<QVector<bool>> m_entryGreenWaveCorridorStages;

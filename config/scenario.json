@@ -197,7 +197,7 @@
     "preferredDockHeight": 310,
     "historyPoints": 180,
     "trajectoryRetentionPoints": 30,
-    "maximumTrackedVehicles": 2000,
+    "maximumTrackedVehicles": 10000,
     "maximumDisplayedVehicles": 400,
     "semiTransparentBackground": true,
     "intersectionInteraction": {
@@ -368,15 +368,16 @@
     "enabled": true,
     "targetDensityVehPerLaneKm": 5.0,
     "targetVehicleCount": 2000,
+    "maximumVehicleCount": 10000,
     "allocationMode": "RANDOM_ELIGIBLE_LINK_LANE_SLOTS",
     "preloadWindowSec": 15,
-    "maximumCreatesPerStep": 44,
+    "maximumCreatesPerStep": 100,
     "maximumAttemptsPerVehicle": 3,
     "minimumLinkLengthM": 60.0,
     "startClearanceM": 20.0,
     "endClearanceM": 20.0,
     "decisionEndClearanceM": 80.0,
-    "minimumSpacingM": 35.0,
+    "minimumSpacingM": 16.0,
     "initialSpeedMps": 8.0,
     "randomSeed": 20260822,
     "destinationRandomSeed": 20260823,
@@ -444,7 +445,7 @@
       "R03",
       "R04"
     ],
-    "note": "仿真开始后在合格路段、车道和安全位置组成的候选槽位中随机抽取2000个位置，按90%小客车、10%中客车分批预置，两类车辆均为CAV；货车、电动车、大客车和公交车不参与生成。固定随机种子保证比赛复现实验。同一槽位不会重复，边界路段、短路段和危险加宽后段不参与抽取。预加载窗口结束后由外围18个端点按每点1000辆/h、居民区4个端点按每点100辆/h持续发车，持续发车使用相同车型比例。每辆车从22端点中确定不同于起点的固定终点，运行中只调整路径而不改变终点"
+    "note": "预生成10000个互不重复的合格路段/车道/安全位置，控制栏默认预加载2000辆、允许设置0至10000辆；按90%小客车、10%中客车分批预置，两类车辆均为CAV。16米为候选车辆中心位置的最小间距，边界路段、短路段和危险加宽后段不参与抽取。预加载窗口结束后由外围18个端点按每点1000辆/h、居民区4个端点按每点100辆/h持续发车。每辆车从22端点中确定不同于起点的固定终点，运行中只调整路径而不改变终点"
   },
   "signals": {
     "useTraditionalCallback": false,
@@ -600,7 +601,7 @@
       "note": "按交叉口分别分配本机终端或RSU控制权；双方共享同一改进最大压力内核和安全组合相位，非租约持有者只提供有界辅助提案，不能直接写灯色。"
     },
     "improvedMaxPressure": {
-      "modelId": "CONTINUITY_STORAGE_CONSTRAINED_CONFLICT_GRAPH_RSU_IMPROVED_MAX_PRESSURE_V4",
+      "modelId": "REVERSIBLE_PRESSURE_CONTINUITY_STORAGE_CONSTRAINED_CONFLICT_GRAPH_RSU_IMPROVED_MAX_PRESSURE_V5",
       "predictionEnabled": true,
       "spillbackGateEnabled": true,
       "fairnessEnabled": true,
@@ -636,6 +637,16 @@
       "neutralDemandVehPerLane": 4.0,
       "cycleGainSecPerVehPerLane": 3.0,
       "maxCycleChangeSecPerUpdate": 8.0,
+      "reversibleMaxPressure": {
+        "enabled": true,
+        "modelId": "SIGNED_REVERSIBLE_PRESSURE_PROPAGATION_V1",
+        "occupancyBackPressureVeh": 6.0,
+        "occupancyBackPressureExponent": 2.0,
+        "occupancyTrendBackPressureVeh": 8.0,
+        "maximumAdditionalBackPressureVeh": 8.0,
+        "pressureDirectionDeadbandVeh": 0.5,
+        "note": "可逆最大压力只表示车流压力由拥堵下游向上游反向传播，不改变车辆、车道或Link的行驶方向。阶段选择使用带符号净压力的非负可服务部分，回溢硬门控仍具有最高优先级。"
+      },
       "entryArterialGreenWave": {
         "enabled": true,
         "outerBoundaryOnly": true,

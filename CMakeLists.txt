@@ -63,6 +63,7 @@ add_executable(XionganTrafficNativeCpp WIN32
     src/core/ProjectModel.cpp
     src/core/TrafficAggregator.cpp
     src/core/SignalEngine.cpp
+    src/core/ReversibleMaxPressure.cpp
     src/core/RoutingEngine.cpp
     src/core/DemandEngine.cpp
     src/core/CooperativeLaneBalancer.cpp
@@ -77,6 +78,8 @@ add_executable(XionganTrafficNativeCpp WIN32
     src/core/ProjectModel.h
     src/core/TrafficAggregator.h
     src/core/SignalEngine.h
+    src/core/SimulationRestartGuard.h
+    src/core/ReversibleMaxPressure.h
     src/core/RoutingEngine.h
     src/core/DemandEngine.h
     src/core/CooperativeLaneBalancer.h
@@ -142,6 +145,8 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src" PREFIX "src"
         src/core/ProjectModel.cpp src/core/ProjectModel.h
         src/core/TrafficAggregator.cpp src/core/TrafficAggregator.h
         src/core/SignalEngine.cpp src/core/SignalEngine.h
+        src/core/SimulationRestartGuard.h
+        src/core/ReversibleMaxPressure.cpp src/core/ReversibleMaxPressure.h
         src/core/RoutingEngine.cpp src/core/RoutingEngine.h
         src/core/DemandEngine.cpp src/core/DemandEngine.h
         src/core/CooperativeLaneBalancer.cpp src/core/CooperativeLaneBalancer.h
@@ -171,6 +176,7 @@ add_executable(NativeCoreSelfTest
     src/core/ProjectModel.cpp
     src/core/TrafficAggregator.cpp
     src/core/SignalEngine.cpp
+    src/core/ReversibleMaxPressure.cpp
     src/core/RoutingEngine.cpp
     src/core/DemandEngine.cpp
     src/core/MetricsRecorder.cpp

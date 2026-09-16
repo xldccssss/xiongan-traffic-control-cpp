@@ -1,14 +1,15 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "sourceSha256": "c187b8cabf7f1dad9652b2e533a3841aefe84f0fafca6ccd51aa6cf053ba0e1c",
   "methodIdentity": {
-    "mainMethodId": "CSC_LACG_IMP_V4",
-    "publicationMethodId": "CSC_MRCG_BP_IMP",
+    "mainMethodId": "RMP_CSC_LACG_IMP_V5",
+    "publicationMethodId": "RMP_CSC_MRCG_BP_IMP",
     "engineeringCompatibilityIdRetained": false,
-    "mainMethodChineseName": "连续放行与下游存储约束的转向分辨冲突图双向优先改进最大压力",
-    "mainMethodEnglishName": "Continuity-and-Storage-Constrained Movement-Resolved Conflict-Graph Bidirectional-Priority Improved Max Pressure",
+    "mainMethodChineseName": "可逆压力传播、连续放行与下游存储约束的转向分辨冲突图双向优先改进最大压力",
+    "mainMethodEnglishName": "Reversible-Pressure, Continuity-and-Storage-Constrained Movement-Resolved Conflict-Graph Bidirectional-Priority Improved Max Pressure",
     "explicitlyNot": [
-      "REVERSIBLE_MAX_PRESSURE"
+      "VEHICLE_WRONG_WAY_OPERATION",
+      "PHYSICAL_LANE_DIRECTION_REVERSAL"
     ]
   },
   "phaseFeasibilityEvidence": {
@@ -35,12 +36,14 @@
     "oneLaneToLaneMovementOneStageCertified": true
   },
   "improvedMaxPressureEvidence": {
-    "modelId": "CONTINUITY_STORAGE_CONSTRAINED_CONFLICT_GRAPH_RSU_IMPROVED_MAX_PRESSURE_V4",
+    "modelId": "REVERSIBLE_PRESSURE_CONTINUITY_STORAGE_CONSTRAINED_CONFLICT_GRAPH_RSU_IMPROVED_MAX_PRESSURE_V5",
     "prediction": true,
     "spillbackGate": true,
     "fairness": true,
     "rsuReliability": true,
     "compatibleParallelism": true,
+    "reversiblePressurePropagation": true,
+    "reversiblePressureModelId": "SIGNED_REVERSIBLE_PRESSURE_PROPAGATION_V1",
     "bidirectionalNearOptimalPreference": true,
     "bidirectionalPreferenceFloorRatio": 0.85,
     "boundedStarvationService": true,
@@ -50,6 +53,7 @@
       "fairnessEnabled",
       "rsuReliabilityEnabled",
       "compatibleParallelismEnabled",
+      "reversibleMaxPressure.enabled",
       "boundedStarvationEnabled",
       "bidirectionalStagePreferenceEnabled"
     ]

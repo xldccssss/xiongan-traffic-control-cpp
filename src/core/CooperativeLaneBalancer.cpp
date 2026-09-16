@@ -22,6 +22,16 @@ void CooperativeLaneBalancer::setModel(const ProjectModel* model)
     m_model = model;
     m_config = model ? model->scenario().value("cav").toObject()
         .value("laneBalancing").toObject() : QJsonObject();
+    m_lanesByMovement.clear();
+    m_lockedLinkIds.clear();
+    m_laneOrderByLink.clear();
+    m_lanePosition.clear();
+    m_leftNeighbor.clear();
+    m_rightNeighbor.clear();
+    m_wideningCorridorCount = 0;
+    m_wideningUnresolvedCount = 0;
+    m_topologyPolicyReady = false;
+    m_topologyPolicyBuildCount = 0;
     reset();
 }
 
@@ -41,6 +51,13 @@ void CooperativeLaneBalancer::cancelVehicleCommand(qint64 vehicleId)
 
 bool CooperativeLaneBalancer::configure(NetInterface* network)
 {
+    // The lane graph is static for the lifetime of this ProjectModel. TESSNG
+    // may temporarily expose empty ILane::toLaneConnectors() lists after a
+    // completed run, so rebuilding here would destroy a valid first-run
+    // widening policy and falsely reject every following reset.
+    if (m_topologyPolicyReady) return true;
+
+    ++m_topologyPolicyBuildCount;
     m_lanesByMovement = m_model ? m_model->movementLanesByLink()
                                : QHash<qint64, QHash<qint64, QSet<qint64>>>();
     m_lockedLinkIds.clear();
@@ -54,7 +71,10 @@ bool CooperativeLaneBalancer::configure(NetInterface* network)
         return false;
     buildWideningPolicy(network);
     buildLaneOrders(network);
-    return !m_laneOrderByLink.isEmpty();
+    const bool ready = !m_laneOrderByLink.isEmpty()
+        && m_wideningUnresolvedCount == 0;
+    m_topologyPolicyReady = ready;
+    return ready;
 }
 
 void CooperativeLaneBalancer::buildWideningPolicy(NetInterface* network)

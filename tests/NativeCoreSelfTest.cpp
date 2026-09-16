@@ -7,14 +7,17 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QSet>
 #include <QTemporaryDir>
 #include <QTextStream>
 
 #include "core/ProjectModel.h"
 #include "core/DemandEngine.h"
 #include "core/MetricsRecorder.h"
+#include "core/ReversibleMaxPressure.h"
 #include "core/RoutingEngine.h"
 #include "core/SignalEngine.h"
+#include "core/SimulationRestartGuard.h"
 #include "core/TrafficAggregator.h"
 
 namespace {
@@ -24,6 +27,98 @@ bool check(bool condition, const QString& message)
     return condition;
 }
 
+bool verifyManualResetLifecycleGuard()
+{
+    SimulationRestartGuard guard;
+
+    const ManualResetAction stoppingGap = guard.requestReset(true, false);
+    const std::uint64_t firstGeneration = guard.generation();
+    if (!check(stoppingGap == ManualResetAction::WaitForStopCallback,
+               "manual reset started inside the native stopping gap")
+        || !check(guard.isCurrent(firstGeneration),
+                  "manual reset was not retained until afterStop")
+        || !check(!guard.startRequested(),
+                  "reset implicitly requested a new run"))
+        return false;
+
+    guard.requestStart();
+    if (!check(guard.startRequested(),
+               "explicit start was not retained during the stopping gap"))
+        return false;
+
+    guard.startAccepted();
+    if (!check(!guard.pending() && !guard.startRequested(),
+               "accepted manual-reset start remained pending"))
+        return false;
+
+    const ManualResetAction running = guard.requestReset(true, true);
+    if (!check(running == ManualResetAction::RequestStop,
+               "running manual reset did not request a full stop"))
+        return false;
+
+    const std::uint64_t cancelledGeneration = guard.generation();
+    guard.cancel();
+    const ManualResetAction stopped = guard.requestReset(false, false);
+    return check(stopped == ManualResetAction::ReadyStopped,
+                 "stopped manual reset did not remain stopped")
+        && check(!guard.startRequested(),
+                 "stopped manual reset scheduled an implicit start")
+        && check(!guard.isCurrent(cancelledGeneration),
+                 "cancelled reset timer remained current");
+}
+
+bool verifyReversiblePressureComponent()
+{
+    QJsonObject configuration;
+    configuration["enabled"] = true;
+    configuration["occupancyBackPressureVeh"] = 6.0;
+    configuration["occupancyBackPressureExponent"] = 2.0;
+    configuration["occupancyTrendBackPressureVeh"] = 8.0;
+    configuration["maximumAdditionalBackPressureVeh"] = 5.0;
+    configuration["pressureDirectionDeadbandVeh"] = 0.5;
+    ReversibleMaxPressure component(configuration);
+
+    const ReversiblePressureEvidence forward = component.evaluate(
+        12.0, 2.0, 0.75, 0.20, 0.20, 0.0);
+    if (!check(forward.direction == PressurePropagationDirection::Forward,
+               "upstream demand did not produce forward pressure")
+        || !check(forward.signedPressureVeh > 0.0
+                  && qAbs(forward.usablePressureVeh
+                          - forward.signedPressureVeh) < 1e-9,
+                  "forward pressure was not serviceable"))
+        return false;
+
+    const ReversiblePressureEvidence reverse = component.evaluate(
+        3.0, 8.0, 0.75, 0.75, 0.80, 0.05);
+    if (!check(reverse.direction == PressurePropagationDirection::Reverse,
+               "downstream congestion did not propagate reverse pressure")
+        || !check(reverse.signedPressureVeh < 0.0
+                  && reverse.usablePressureVeh == 0.0,
+                  "reverse pressure was not clipped only at service scoring")
+        || !check(!reverse.changesVehicleDirection
+                  && !reverse.changesLaneDirection
+                  && !reverse.changesLinkDirection,
+                  "pressure propagation changed a physical direction"))
+        return false;
+
+    const ReversiblePressureEvidence bounded = component.evaluate(
+        20.0, 0.0, 0.75, 1.0, 1.0, 1.0);
+    if (!check(qAbs(bounded.occupancyBackPressureVeh
+                    + bounded.occupancyTrendBackPressureVeh - 5.0) < 1e-9,
+               "additional reverse pressure exceeded its bound"))
+        return false;
+
+    configuration["enabled"] = false;
+    component.configure(configuration);
+    const ReversiblePressureEvidence compatible = component.evaluate(
+        10.0, 4.0, 0.75, 0.95, 1.0, 0.5);
+    return check(qAbs(compatible.signedPressureVeh - 7.0) < 1e-9,
+                 "disabled reversible pressure did not preserve V4 queue difference")
+        && check(compatible.occupancyBackPressureVeh == 0.0
+                 && compatible.occupancyTrendBackPressureVeh == 0.0,
+                 "disabled reversible pressure kept additional backpressure");
+}
+
 bool verifyConfiguration(const ProjectModel& model)
 {
     const QJsonObject signalConfig = model.scenario().value("signals").toObject();
@@ -31,6 +126,8 @@ bool verifyConfiguration(const ProjectModel& model)
     const QJsonObject actuated = runtime.value("actuatedMaxPressure").toObject();
     const QJsonObject authority = runtime.value("dynamicAuthority").toObject();
     const QJsonObject pressure = runtime.value("improvedMaxPressure").toObject();
+    const QJsonObject reversiblePressure = pressure.value(
+        "reversibleMaxPressure").toObject();
     const QJsonObject greenWave = pressure.value(
         "entryArterialGreenWave").toObject();
     const QJsonObject cav = model.scenario().value("cav").toObject();
@@ -92,6 +189,16 @@ bool verifyConfiguration(const ProjectModel& model)
                  "spillback gate")
         && check(pressure.value("compatibleParallelismEnabled").toBool(),
                  "compatible parallelism")
+        && check(pressure.value("modelId").toString()
+                     == QStringLiteral(
+                         "REVERSIBLE_PRESSURE_CONTINUITY_STORAGE_CONSTRAINED_"
+                         "CONFLICT_GRAPH_RSU_IMPROVED_MAX_PRESSURE_V5"),
+                 "reversible-pressure improved max-pressure model id")
+        && check(reversiblePressure.value("enabled").toBool(),
+                 "reversible pressure propagation")
+        && check(reversiblePressure.value("modelId").toString()
+                     == ReversibleMaxPressure::defaultModelId(),
+                 "reversible pressure component model id")
         && check(greenWave.value("enabled").toBool(),
                  "entry arterial green wave")
         && check(greenWave.value("outerBoundaryOnly").toBool(),
@@ -527,6 +634,52 @@ bool verifyPressureActuation(ProjectModel& model)
     return true;
 }
 
+bool verifyReversiblePressureIntegration(ProjectModel& model)
+{
+    int index = -1;
+    for (int i = 0; i < model.intersections().size(); ++i) {
+        if (!model.intersections()[i].permanentGreen
+            && model.intersections()[i].stages.size() >= 2) {
+            index = i;
+            break;
+        }
+    }
+    if (!check(index >= 0,
+               "no signalized intersection for reversible-pressure audit"))
+        return false;
+
+    TrafficAggregator traffic(&model);
+    QVector<QVector<StageTraffic>>& values =
+        const_cast<QVector<QVector<StageTraffic>>&>(traffic.stages());
+    StageTraffic& target = values[index][1];
+    target.queueVeh = 3.0;
+    target.vehicleCount = 3.0;
+    target.arrivalsVehPerMin = 0.0;
+    target.meanSpeedMps = 0.0;
+    target.downstreamQueueVeh = 8.0;
+    target.downstreamOccupancy = 0.80;
+
+    SignalEngine engine(&model);
+    engine.setBranch(ControlBranch::ImprovedMaxPressure);
+    engine.reset(0.0);
+    engine.update(0.0, traffic);
+    const IntersectionSignalState state = engine.states().value(index);
+    if (!check(state.lastReversiblePressure.size() > 1,
+               "signal engine did not retain reversible-pressure evidence"))
+        return false;
+    const ReversiblePressureEvidence evidence =
+        state.lastReversiblePressure.value(1);
+    return check(evidence.direction == PressurePropagationDirection::Reverse,
+                 "C++ signal score did not use downstream reverse pressure")
+        && check(evidence.signedPressureVeh < 0.0
+                 && evidence.usablePressureVeh == 0.0,
+                 "C++ signal score did not use signed pressure")
+        && check(!evidence.changesVehicleDirection
+                 && !evidence.changesLaneDirection
+                 && !evidence.changesLinkDirection,
+                 "C++ pressure integration changed physical direction");
+}
+
 bool verifyAllBlockedSpillbackRecovery(ProjectModel& model)
 {
     for (const QString& targetId : {QStringLiteral("J012"),
@@ -823,6 +976,8 @@ bool verifyPairedResultPersistence()
     const QJsonObject resultDocument = QJsonDocument::fromJson(file.readAll()).object();
     const QJsonObject experiment = resultDocument
         .value(QStringLiteral("experiment")).toObject();
+    const QJsonObject controlMethod = resultDocument
+        .value(QStringLiteral("controlMethod")).toObject();
     const QJsonObject firstSample = resultDocument
         .value(QStringLiteral("series")).toArray().at(0).toObject();
     return check(experiment.value(QStringLiteral("vehicleGenerationRandomSeed")).toInt() == 101,
@@ -832,6 +987,9 @@ bool verifyPairedResultPersistence()
         && check(experiment.value(QStringLiteral("executionMode")).toString()
                      == QStringLiteral("AUTOMATIC_PAIRED_COMPARISON"),
                  "paired execution mode metadata")
+        && check(controlMethod.value(QStringLiteral("modelId")).toString()
+                     == QStringLiteral("FIXED_TIMING_BASELINE"),
+                 "control method metadata")
         && check(firstSample.value(QStringLiteral("completedVehicles")).toInt() == 0,
                  "raw generated-minus-running leaked into completed vehicles")
         && check(firstSample.contains(QStringLiteral("removedVehicles")),
@@ -859,9 +1017,48 @@ int main(int argc, char* argv[])
     if (!check(model.intersections().size() == 254, "intersection count")
         || !check(model.decisionsByLink().size() == 927, "decision count")
         || !check(model.terminals().size() == 22, "terminal count")
-        || !check(model.placements().size() == 2000, "placement count")
+        || !check(model.placements().size() == 10000, "placement capacity")
+        || !check(model.scenario().value("initialTraffic").toObject()
+                      .value("targetVehicleCount").toInt() == 2000,
+                  "default preload count")
+        || !check(model.scenario().value("initialTraffic").toObject()
+                      .value("maximumVehicleCount").toInt() == 10000,
+                  "maximum preload count")
         || !check(model.links().size() >= 1200, "link count")
         || !check(model.edges().size() >= 2700, "edge count")) return 4;
+    QSet<QString> preloadSlots;
+    QSet<qint64> allPreloadLinks;
+    QSet<qint64> defaultPreloadLinks;
+    QSet<qint64> boundaryLinks;
+    for (const TerminalDefinition& terminal : model.terminals()) {
+        boundaryLinks.insert(terminal.entryLinkId);
+        boundaryLinks.insert(terminal.exitLinkId);
+    }
+    bool preloadMetadataValid = true;
+    for (int i = 0; i < model.placements().size(); ++i) {
+        const InitialPlacement& placement = model.placements()[i];
+        preloadSlots.insert(QStringLiteral("%1:%2:%3")
+            .arg(placement.linkId)
+            .arg(placement.laneNumber)
+            .arg(qRound64(placement.distanceM * 1000.0)));
+        allPreloadLinks.insert(placement.linkId);
+        if (i < 2000) defaultPreloadLinks.insert(placement.linkId);
+        preloadMetadataValid = preloadMetadataValid
+            && !boundaryLinks.contains(placement.linkId)
+            && !placement.originTerminalId.isEmpty()
+            && !placement.destinationTerminalId.isEmpty()
+            && placement.originTerminalId != placement.destinationTerminalId
+            && placement.destinationExitLinkId > 0;
+    }
+    if (!check(preloadSlots.size() == model.placements().size(),
+               "preload positions must be unique")
+        || !check(defaultPreloadLinks == allPreloadLinks,
+                  "default preload must cover every eligible preload link")
+        || !check(allPreloadLinks.size() >= 900,
+                  "preload must be distributed across the whole network")
+        || !check(preloadMetadataValid,
+                  "preload must exclude boundary links and keep valid OD metadata")) return 4;
+    if (!verifyManualResetLifecycleGuard()) return 19;
     if (!verifyConfiguration(model)) return 5;
     if (!verifyManifestMappings(model)) return 6;
     if (!verifySignalStateMachine(model, ControlBranch::FixedTiming)) return 7;
@@ -869,6 +1066,8 @@ int main(int argc, char* argv[])
     if (!verifyPermanentGreenIntersections(model)) return 9;
     if (!verifyEntryArterialGreenWave(model)) return 10;
     if (!verifyPressureActuation(model)) return 11;
+    if (!verifyReversiblePressureComponent()) return 17;
+    if (!verifyReversiblePressureIntegration(model)) return 18;
     if (!verifyAllBlockedSpillbackRecovery(model)) return 12;
     if (!verifyAdaptiveGreenPlanIsExecuted(model)) return 13;
     if (!verifyRouting(model)) return 14;

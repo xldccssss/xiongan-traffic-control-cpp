@@ -345,6 +345,33 @@ QString MetricsRecorder::finish(const RoutingEngine* routing,QString* error)
     QJsonArray abnormalTrips;for(const QJsonObject&row:m_abnormalTrips)abnormalTrips.append(row);QJsonObject document;
     const QJsonObject performanceResult=performance();
     document["schemaVersion"]="experiment-result-v2";document["controlBranch"]=m_algorithm;document["performance"]=performanceResult;document["series"]=series;document["completedTrips"]=trips;document["abnormalTrips"]=abnormalTrips;
+    QJsonObject controlMethod;
+    if (m_algorithm == QStringLiteral("IMPROVED_MAX_PRESSURE")) {
+        const QJsonObject pressure = m_model
+            ? m_model->scenario().value(QStringLiteral("runtimeControl"))
+                  .toObject().value(QStringLiteral("improvedMaxPressure"))
+                  .toObject()
+            : QJsonObject();
+        const QJsonObject reversible = pressure
+            .value(QStringLiteral("reversibleMaxPressure")).toObject();
+        controlMethod["modelId"] = pressure.value(QStringLiteral("modelId"))
+            .toString(QStringLiteral(
+                "REVERSIBLE_PRESSURE_CONTINUITY_STORAGE_CONSTRAINED_"
+                "CONFLICT_GRAPH_RSU_IMPROVED_MAX_PRESSURE_V5"));
+        controlMethod["reversiblePressureModelId"] = reversible
+            .value(QStringLiteral("modelId"))
+            .toString(QStringLiteral(
+                "SIGNED_REVERSIBLE_PRESSURE_PROPAGATION_V1"));
+        controlMethod["reversiblePressureEnabled"] = reversible
+            .value(QStringLiteral("enabled")).toBool(true);
+        controlMethod["changesVehicleDirection"] = false;
+        controlMethod["changesLaneDirection"] = false;
+        controlMethod["changesLinkDirection"] = false;
+    } else {
+        controlMethod["modelId"] = QStringLiteral("FIXED_TIMING_BASELINE");
+        controlMethod["reversiblePressureEnabled"] = false;
+    }
+    document["controlMethod"] = controlMethod;
     QJsonArray intersectionDiagnostics;
     qint64 totalSampledPassages=0,totalSampledGreenPassages=0;
     double totalGreenLowSpeedQueueSec=0.0;

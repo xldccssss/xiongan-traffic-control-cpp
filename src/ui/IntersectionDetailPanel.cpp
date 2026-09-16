@@ -317,14 +317,19 @@ void IntersectionDetailPanel::updateTelemetry(const QVariantMap& values)
         const QVariantMap stage = value.toMap();
         const QString stageColor = stage.value("color").toString() == "U"
             ? QStringLiteral("无信号") : stage.value("color").toString();
-        lines << QStringLiteral("%1  灯色=%2  排队=%3辆  车辆=%4辆  速度=%5km/h  到达率=%6辆/min  下游排队=%7辆  占有率=%8%")
+        lines << QStringLiteral("%1  灯色=%2  排队=%3辆  车辆=%4辆  速度=%5km/h  到达率=%6辆/min  下游排队=%7辆  占有率=%8%\n    压力方向=%9  正向=%10  逆向=%11  净压力=%12  可服务=%13")
             .arg(stage.value("stageId").toString(), stageColor)
             .arg(stage.value("queueVeh").toDouble(), 0, 'f', 0)
             .arg(stage.value("vehicleCount").toDouble(), 0, 'f', 0)
             .arg(stage.value("meanSpeedKph").toDouble(), 0, 'f', 1)
             .arg(stage.value("arrivalsVehPerMin").toDouble(), 0, 'f', 1)
             .arg(stage.value("downstreamQueueVeh").toDouble(), 0, 'f', 0)
-            .arg(stage.value("occupancy").toDouble() * 100.0, 0, 'f', 1);
+            .arg(stage.value("occupancy").toDouble() * 100.0, 0, 'f', 1)
+            .arg(stage.value("pressureDirection").toString())
+            .arg(stage.value("forwardPressureVeh").toDouble(), 0, 'f', 2)
+            .arg(stage.value("reversePressureVeh").toDouble(), 0, 'f', 2)
+            .arg(stage.value("signedPressureVeh").toDouble(), 0, 'f', 2)
+            .arg(stage.value("usablePressureVeh").toDouble(), 0, 'f', 2);
     }
     m_detail->setPlainText(lines.join('\n'));
     const QString id = m_markerId.isEmpty() ? values.value("intersectionId").toString() : m_markerId;

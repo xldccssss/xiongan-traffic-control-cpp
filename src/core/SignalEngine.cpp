@@ -42,11 +42,14 @@ void SignalEngine::setModel(const ProjectModel* model)
 {
     QMutexLocker locker(&m_mutex);
     m_model = model;
+    m_reversiblePressure.configure(QJsonObject());
     if (m_model) {
         m_signalConfig = m_model->scenario().value("signals").toObject();
         const QJsonObject runtime = m_model->scenario().value("runtimeControl").toObject();
         m_actuatedConfig = runtime.value("actuatedMaxPressure").toObject();
         m_pressureConfig = runtime.value("improvedMaxPressure").toObject();
+        m_reversiblePressure.configure(m_pressureConfig.value(
+            "reversibleMaxPressure").toObject());
         m_greenWaveConfig = m_pressureConfig.value(
             "entryArterialGreenWave").toObject();
         m_authorityConfig = runtime.value("dynamicAuthority").toObject();
@@ -247,6 +250,7 @@ void SignalEngine::reset(double nowSec)
         st.lastQueues.fill(0.0, n);
         st.lastScores.fill(0.0, n);
         st.lastEffectiveScores.fill(0.0, n);
+        st.lastReversiblePressure.fill(ReversiblePressureEvidence(), n);
         st.stageRedStartedSec.fill(nowSec, n);
         if (n) st.stageRedStartedSec[0] = -1.0;
         st.stageLastGreenStartedSec.fill(-1.0, n);
@@ -443,10 +447,17 @@ QVector<StagePressureEvidence> SignalEngine::improvedEvidence(
                 * qMax(0.0, cfg(m_pressureConfig, "spillbackPredictionHorizonSec", 10.0))
                 / controlInterval) : 0.0;
         e.predictedDownstreamOccupancy = clampValue(v.downstreamOccupancy + predictedIncrease, 0.0, 1.0);
-        const double pressure = qMax(0.0, e.queueVeh
+        const double forwardPressure = qMax(0.0, e.queueVeh
             + arrivalWeight * e.predictedArrivalsVeh
-            + growthWeight * qMax(0.0, e.queueTrendVeh)
-            - downstreamWeight * qMax(0.0, v.downstreamQueueVeh));
+            + growthWeight * qMax(0.0, e.queueTrendVeh));
+        e.reversiblePressure = m_reversiblePressure.evaluate(
+            forwardPressure,
+            v.downstreamQueueVeh,
+            downstreamWeight,
+            v.downstreamOccupancy,
+            e.predictedDownstreamOccupancy,
+            v.downstreamOccupancy - oldOcc);
+        const double pressure = e.reversiblePressure.usablePressureVeh;
         const double speedDeficit = v.vehicleCount > 0.0
             ? 1.0 - clampValue(v.meanSpeedMps / freeFlow, 0.0, 1.0) : 0.0;
         const double minGate = clampValue(cfg(m_pressureConfig, "minimumDischargeGate", 0.05), 0.0, 1.0);
@@ -710,7 +721,13 @@ void SignalEngine::updateImproved(int index,double now,const QVector<StageTraffi
     updatePlanMemory(index,traffic,ev,networkCongestion,now);
     QVector<double> scores=coordinateAuthority(index,now,traffic,&ev,networkCongestion,congestion);
     for(StageTraffic& v:traffic){double service=0.0;for(double q:v.serviceableQueueByLane)service+=q;if(!v.serviceableQueueByLane.isEmpty())v.queueVeh=service;}
-    st.lastScores=scores; st.lastQueues.resize(traffic.size()); for(int s=0;s<traffic.size();++s)st.lastQueues[s]=traffic[s].queueVeh;
+    st.lastScores = scores;
+    st.lastQueues.resize(traffic.size());
+    st.lastReversiblePressure.resize(ev.size());
+    for (int s = 0; s < traffic.size(); ++s) {
+        st.lastQueues[s] = traffic[s].queueVeh;
+        st.lastReversiblePressure[s] = ev[s].reversiblePressure;
+    }
     double soft=0.0,hard=0.0; QVector<double> effective=effectiveScores(index,now,scores,traffic,&soft,&hard); st.lastEffectiveScores=effective;
     const int current=st.activeStage; QVector<int> feasible; for(int s=0;s<ev.size();++s)if(!ev[s].spillbackBlocked)feasible.push_back(s);
     const bool allStagesBlocked=feasible.isEmpty();

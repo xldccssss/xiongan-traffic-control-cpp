@@ -11,12 +11,15 @@ set "SMOKE_TARGET_MULTIPLE=%~2"
 if "%SMOKE_TARGET_MULTIPLE%"=="" set "SMOKE_TARGET_MULTIPLE=1"
 set "SMOKE_BRANCH=%~3"
 if "%SMOKE_BRANCH%"=="" set "SMOKE_BRANCH=IMPROVED_MAX_PRESSURE"
+set "SMOKE_MODE=%~4"
+set "SMOKE_EXTRA="
+if /I "%SMOKE_MODE%"=="RESET_SWITCH" set "SMOKE_EXTRA=--runtime-reset-smoke-test"
 if not exist "%~dp0bin\Release\XionganTrafficNativeCpp.exe" (
     echo Release executable not found. Run build-release.cmd first.
     exit /b 2
 )
 del /q "%~dp0generated\native_runtime_smoke_report.json" 2>nul
-start "" /wait /D "%~dp0" "%~dp0bin\Release\XionganTrafficNativeCpp.exe" --runtime-smoke-test --runtime-smoke-duration=%SMOKE_DURATION% --runtime-smoke-target-multiple=%SMOKE_TARGET_MULTIPLE% --runtime-smoke-branch=%SMOKE_BRANCH%
+start "" /wait /D "%~dp0" "%~dp0bin\Release\XionganTrafficNativeCpp.exe" --runtime-smoke-test --runtime-smoke-duration=%SMOKE_DURATION% --runtime-smoke-target-multiple=%SMOKE_TARGET_MULTIPLE% --runtime-smoke-branch=%SMOKE_BRANCH% %SMOKE_EXTRA%
 set "APP_EXIT=%ERRORLEVEL%"
 if not exist "%~dp0generated\native_runtime_smoke_report.json" (
     echo Runtime verification report was not created. Process exit code: %APP_EXIT%
